@@ -68,6 +68,7 @@ html {
   background-color: transparent;
   transition: all 0.3s ease-out;
   transform-origin: center center;
+  cursor: pointer; /* Menegaskan ini bisa diklik */
 }
 
 .enter-site-link:hover {
@@ -78,70 +79,44 @@ html {
   transform: translateY(-2px);
 }
 
-/* Kelas untuk membuat link ENTER SITE menghilang saat portal aktif */
-.enter-site-link.portal-fade-out {
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-  opacity: 0;
-  transform: scale(0.7);
-  pointer-events: none;
-}
+/* HAPUS styling untuk .enter-site-link.portal-fade-out dan #portal-effect */
+/* .enter-site-link.portal-fade-out { ... } */
+/* #portal-effect { ... } */
+/* @keyframes drStrangePortalAnimation { ... } */
+/* #portal-effect.active { ... } */
 
-/* Styling untuk elemen efek portal */
-#portal-effect {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.1);
-  pointer-events: none;
-  z-index: 1000;
-  border-width: 0px;
-  box-shadow: none;
-}
-
-/* Keyframes untuk animasi portal dengan warna BIRU/CYAN */
-@keyframes drStrangePortalAnimation {
+/* Keyframes BARU untuk animasi klik yang simpel & futuristik */
+@keyframes simpleFuturisticClick {
   0% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
-    box-shadow: 0 0 20px 8px rgba(0, 209, 255, 0.7),
-      /* Biru Cyan Utama */ 0 0 30px 12px rgba(173, 216, 230, 0.6),
-      /* Biru Muda/Putih untuk glow luar */ inset 0 0 10px 2px
-        rgba(0, 150, 200, 0.5); /* Biru lebih dalam untuk inset */
-    border: 4px dotted rgba(0, 209, 255, 0.3); /* Percikan biru cyan */
+    /* Mulai dari state hover atau sedikit lebih ditekan */
+    transform: translateY(-2px) scale(1.03);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.5); /* Glow lebih terang */
+    background-color: rgba(0, 209, 255, 0.2);
+    border-color: #00d1ff;
   }
   50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(180deg);
-    box-shadow: 0 0 40px 20px rgba(0, 209, 255, 0.9),
-      0 0 70px 35px rgba(173, 216, 230, 0.7),
-      inset 0 0 25px 8px rgba(0, 150, 200, 0.7);
-    border: 6px dashed rgba(0, 209, 255, 0.6);
-  }
-  90% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1.2) rotate(350deg);
-    box-shadow: 0 0 45px 25px rgba(0, 209, 255, 0.7),
-      0 0 80px 40px rgba(173, 216, 230, 0.5),
-      inset 0 0 30px 10px rgba(0, 150, 200, 0.4);
-    border: 4px dotted rgba(0, 209, 255, 0.4);
+    /* Mulai mengecil dan memudar */
+    transform: translateY(-2px) scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(0, 209, 255, 0.2); /* Glow meredup */
   }
   100% {
+    /* Hilang sepenuhnya */
+    transform: translateY(-2px) scale(0.7);
     opacity: 0;
-    transform: translate(-50%, -50%) scale(35) rotate(360deg);
-    box-shadow: 0 0 60px 40px rgba(0, 209, 255, 0),
-      0 0 90px 55px rgba(173, 216, 230, 0),
-      inset 0 0 40px 15px rgba(0, 150, 200, 0);
-    border: 2px dotted transparent;
+    box-shadow: 0 0 0 rgba(0, 209, 255, 0);
   }
 }
 
-/* Kelas untuk mengaktifkan animasi portal */
-#portal-effect.active {
-  animation: drStrangePortalAnimation 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+/* Kelas BARU yang ditambahkan oleh JavaScript untuk memicu animasi simpel */
+.enter-site-link.clicked-effect {
+  animation-name: simpleFuturisticClick;
+  animation-duration: 0.5s; /* Animasi lebih cepat dan simpel */
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  pointer-events: none; /* Mencegah klik ganda */
+  /* Tidak perlu reset transform di sini jika keyframe 0% sudah mengaturnya */
 }
 
 /* ================== */
@@ -164,10 +139,6 @@ html {
     letter-spacing: 2px;
     max-width: 280px;
   }
-  #portal-effect {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -186,9 +157,5 @@ html {
     letter-spacing: 1.5px;
     min-width: 180px;
     max-width: 250px;
-  }
-  #portal-effect {
-    width: 30px;
-    height: 30px;
   }
 }
