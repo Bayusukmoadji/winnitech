@@ -1,22 +1,18 @@
-/* File: ../assets/css/techstocks.css */
-
 /* ================== */
 /* Basic Setup & Video Background */
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
-  background-color: #080a0f; /* Warna fallback jika video tidak termuat */
+  background-color: #080a0f;
   color: #e0e0e0;
   margin: 0;
   padding: 0;
-  position: relative; /* Bisa jadi tidak diperlukan jika video z-index negatif */
-  /* Hapus background-image properties untuk body */
-  /* background-image: url("../img/star.png"); */
-  /* background-size: cover; */
-  /* background-position: center center; */
-  /* background-attachment: fixed; */
-  padding-top: 80px; /* Tetap ada untuk fixed navbar */
-  overflow-x: hidden; /* Mencegah scroll horizontal jika ada konten lebar */
+  position: relative;
+  padding-top: 80px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #background-video-techstock {
@@ -28,8 +24,7 @@ body {
   height: 100vh;
   object-fit: cover;
   object-position: center center;
-  z-index: -1; /* Di belakang semua konten lain */
-  /* Pastikan tidak ada filter atau opacity yang mengganggu di sini */
+  z-index: -1;
 }
 
 /* ================== */
@@ -40,9 +35,9 @@ body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  position: fixed; /* Bootstrap .fixed-top sudah mengatur ini */
-  width: 100%; /* Pastikan navbar mengambil lebar penuh */
-  z-index: 1030; /* z-index default Bootstrap untuk fixed navbar */
+  position: fixed;
+  width: 100%;
+  z-index: 1030;
 }
 
 .navbar .navbar-brand .logo-img {
@@ -104,9 +99,8 @@ body {
 /* TechStock Page Specific Content Styling */
 /* ================== */
 .techstock-page-content {
-  /* Tambahkan position relative jika belum ada */
   position: relative;
-  z-index: 1; /* Agar di atas video background */
+  z-index: 1;
 }
 
 .techstock-page-content .page-title {
@@ -311,7 +305,7 @@ body {
   border-top: 1px solid rgba(120, 150, 180, 0.15);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  position: relative; /* Agar z-index bekerja jika diperlukan di atas video */
+  position: relative;
   z-index: 1;
 }
 
