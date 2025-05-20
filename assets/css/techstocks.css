@@ -1,0 +1,322 @@
+/* ================== */
+/* Basic Setup & Image Background */
+/* ================== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #080a0f; /* Warna fallback */
+  color: #e0e0e0; /* Warna teks default terang */
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-image: url("../img/star.png"); /* Latar belakang gambar star.png */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  padding-top: 80px; /* Sesuaikan dengan tinggi navbar Anda, mungkin perlu sedikit lebih */
+}
+
+/* ================== */
+/* Navbar Styling (Mirip News Page) */
+/* ================== */
+.navbar {
+  background-color: rgba(15, 20, 30, 0.75) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .navbar-brand .logo-img {
+  height: 40px; /* Sesuaikan jika perlu */
+}
+
+.navbar #navSearchFormGlobal .form-control {
+  /* ID diubah untuk global search */
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.navbar #navSearchFormGlobal .form-control::placeholder {
+  color: #a0a8b0;
+}
+
+.navbar #navSearchFormGlobal .bi-search {
+  color: #a0a8b0;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #d0d8e0;
+  font-family: "Bebas Neue", sans-serif; /* Font Bebas Neue untuk Nav Link */
+  font-size: 1.2rem; /* Sedikit lebih besar untuk Bebas Neue */
+  padding: 0.5rem 1rem;
+  margin: 0 0.35rem; /* Jarak antar item navigasi */
+  border-radius: 4px; /* Sedikit lebih kotak */
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(0, 209, 255, 0.15); /* Aksen: #00D1FF */
+}
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .show > .nav-link {
+  color: #080a0f;
+  background-color: #00d1ff; /* Aksen: #00D1FF */
+  font-weight: normal; /* Bebas Neue sudah bold */
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28200, 208, 224, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ================== */
+/* TechStock Page Specific Content Styling */
+/* ================== */
+.techstock-page-content .page-title {
+  font-family: "Bebas Neue", sans-serif;
+  color: #ffffff;
+  font-size: 3.5rem; /* Ukuran besar untuk Bebas Neue */
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem !important; /* Override Bootstrap mb-4 jika perlu */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.search-wrapper-techstock {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input-techstock {
+  /* Styling untuk input search di halaman TechStock */
+  background-color: rgba(20, 25, 40, 0.7);
+  border: 1px solid rgba(120, 150, 180, 0.25);
+  color: #e0e0e0;
+  padding: 0.75rem 1.25rem; /* Padding lebih besar */
+  border-radius: 8px; /* Sudut lebih membulat */
+  font-size: 1.1rem;
+}
+
+.search-input-techstock::placeholder {
+  color: #808a96;
+}
+
+.search-input-techstock:focus {
+  background-color: rgba(25, 30, 45, 0.85);
+  border-color: #00d1ff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 209, 255, 0.25);
+  color: #ffffff;
+}
+
+.no-results-message-techstock {
+  /* Styling untuk pesan "tidak ada hasil" */
+  color: #808a96;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  border: 1px dashed rgba(120, 150, 180, 0.3);
+  border-radius: 0.5rem;
+  background-color: rgba(20, 25, 40, 0.5);
+}
+
+/* Kartu Saham */
+.stock-card-item .card {
+  background-color: rgba(
+    18,
+    22,
+    33,
+    0.75
+  ); /* Latar lebih gelap dan semi-transparan */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #c5cdd3;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  height: 100%;
+  /* border-color diatur oleh JS, kita beri default di sini */
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(120, 150, 180, 0.2); /* Border default halus */
+}
+
+.stock-card-item .card:hover {
+  transform: scale(1.03); /* Efek scale dari CSS asli Anda */
+  border-color: #00d1ff; /* Aksen hover umum */
+  box-shadow: 0 4px 20px rgba(0, 209, 255, 0.15);
+}
+
+.stock-card-item .card-title {
+  /* Simbol Saham */
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem; /* Besar untuk simbol */
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.stock-card-item .card-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.stock-card-item .card-text .text-success {
+  color: #00d1ff !important; /* Warna Kenaikan Saham */
+  font-weight: 600;
+}
+
+.stock-card-item .card-text .text-danger {
+  color: #ff66c4 !important; /* Warna Penurunan Saham */
+  font-weight: 600;
+}
+
+/* Override border color dari Bootstrap untuk kartu saham */
+.stock-card-item .card.border-success {
+  border-color: rgba(
+    0,
+    209,
+    255,
+    0.6
+  ) !important; /* Warna Kenaikan Saham untuk Border */
+}
+.stock-card-item .card.border-danger {
+  border-color: rgba(
+    255,
+    102,
+    196,
+    0.6
+  ) !important; /* Warna Penurunan Saham untuk Border */
+}
+
+/* ================== */
+/* Footer Styling (Mirip News Page) */
+/* ================== */
+.footer {
+  background-color: rgba(10, 10, 15, 0.75);
+  color: #a0a8b0;
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid rgba(120, 150, 180, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.footer p,
+.footer .list-unstyled a {
+  font-family: "Inter", sans-serif;
+}
+
+.footer .col-md-3 p {
+  /* Deskripsi di footer */
+  color: #b0b8c0 !important;
+  font-size: 0.8rem;
+}
+
+.footer .footer-title {
+  /* Kelas kustom untuk judul di footer */
+  font-family: "Bebas Neue", sans-serif; /* Bebas Neue untuk judul footer */
+  font-weight: normal; /* Bebas Neue sudah bold */
+  color: #e0e0e0 !important;
+  font-size: 1.5rem; /* Disesuaikan untuk Bebas Neue */
+  letter-spacing: 1px;
+  margin-bottom: 1rem !important;
+}
+
+.social-icons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.social-icons-row:last-child {
+  margin-bottom: 0;
+}
+
+.social-icons-row a i.bi {
+  color: #b0b8c0 !important;
+  transition: color 0.3s ease;
+  font-size: 1.3rem !important;
+}
+.social-icons-row a:hover i.bi {
+  color: #00d1ff !important;
+}
+
+.listfoot ul {
+  padding-left: 0;
+}
+.listfoot li {
+  margin-bottom: 0.4rem;
+}
+.listfoot a {
+  font-family: "Bebas Neue", sans-serif; /* Bebas Neue untuk link kategori footer */
+  color: #b0b8c0 !important;
+  transition: color 0.3s ease;
+  font-size: 1.1rem; /* Disesuaikan untuk Bebas Neue */
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0;
+  display: inline-block;
+}
+.listfoot a:hover {
+  color: #00d1ff !important;
+}
+
+.footer small.footer-copyright-text {
+  color: #88929b;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================== */
+/* Responsive Adjustments */
+/* ================== */
+@media (max-width: 991.98px) {
+  /* lg breakpoint */
+  .navbar #navSearchFormGlobal {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: none;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .navbar .navbar-nav {
+    align-items: center;
+  }
+  .navbar .navbar-nav .nav-item {
+    margin: 0.25rem 0;
+  }
+  .techstock-page-content .page-title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* md breakpoint */
+  body {
+    padding-top: 60px; /* Sesuaikan jika tinggi navbar berubah signifikan di mobile */
+  }
+  .techstock-page-content .page-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem !important;
+  }
+  .search-input-techstock {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+  .stock-card-item .card-title {
+    /* Simbol Saham */
+    font-size: 1.6rem;
+  }
+}
