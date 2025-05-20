@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="../assets/css/news.css" />
   </head>
   <body>
+    <video autoplay muted loop playsinline id="background-video-news">
+      <source src="../assets/img/bg2.mp4" type="video/mp4" />
+      Browser Anda tidak mendukung tag video.
+    </video>
+
     <nav class="navbar navbar-expand-lg py-2 fixed-top">
       <div class="container">
         <a class="navbar-brand" href="../index.html">
@@ -47,12 +52,11 @@
           <form
             class="d-flex position-relative my-2 my-lg-0 ms-lg-3 me-lg-auto"
             id="navSearchFormGlobal"
-            style="max-width: 320px"
           >
             <input
               class="form-control rounded-cover ps-5"
               type="search"
-              placeholder="Search site..."
+              placeholder="Cari berita..."
               aria-label="Search"
               id="globalSearchInput"
             />
@@ -62,15 +66,15 @@
           </form>
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a class="nav-link" href="../pages/news.html">News</a>
-            </li>
-            <li class="nav-item">
               <a
                 class="nav-link active"
                 aria-current="page"
-                href="../pages/techstocks.html"
-                >TechStocks</a
+                href="../pages/news.html"
+                >News</a
               >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/techstocks.html">TechStocks</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../pages/launches.html">Launches</a>
@@ -139,30 +143,29 @@
       <div class="container px-3 px-md-5">
         <div class="row justify-content-center align-items-start gy-4 gx-md-5">
           <div class="col-md-3 d-flex flex-column align-items-center">
-            <div class="d-flex align-items-center justify-content-center mb-2">
+            <div
+              class="d-flex align-items-center justify-content-center mb-2 footer-logos-container"
+            >
               <img
                 src="../assets/img/logo.png"
                 alt="Winnicode Logo"
-                class="img-fluid"
-                style="max-width: 150px"
+                class="img-fluid footer-logo-main"
                 loading="lazy"
               />
               <img
                 src="../assets/img/km.png"
                 alt="Kampus Merdeka Logo"
-                class="img-fluid"
-                style="max-width: 80px"
+                class="img-fluid footer-logo-km"
                 loading="lazy"
               />
               <img
                 src="../assets/img/winntech.png"
                 alt="Winntech Logo Footer"
-                class="img-fluid"
-                style="max-width: 150px"
+                class="img-fluid footer-logo-main"
                 loading="lazy"
               />
             </div>
-            <p class="text-center mb-0" style="max-width: 400px">
+            <p class="text-center mb-0 footer-description-text">
               The Winnicode Journalism Program is a human resource development
               program aimed at young men and women pursuing careers in the world
               of reporting.

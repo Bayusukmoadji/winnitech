@@ -2,49 +2,347 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <title>Winntech - Jadwal Peluncuran</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jadwal Peluncuran Produk Teknologi</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
     <link rel="stylesheet" href="../assets/css/launches.css" />
   </head>
   <body>
-    <div class="container py-5">
-      <h1 class="text-center mb-5">📅 Jadwal Peluncuran Produk Teknologi</h1>
+    <video autoplay muted loop playsinline id="background-video-launches">
+      <source src="../assets/img/bg2.mp4" type="video/mp4" />
+      Browser Anda tidak mendukung tag video.
+    </video>
 
-      <!-- Tambahkan tombol tambah jika nanti ingin pakai CRUD -->
-      <div class="text-end mb-4">
-        <a href="/launches/create" class="btn btn-primary"
-          >+ Tambah Peluncuran</a
+    <nav class="navbar navbar-expand-lg py-2 fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <img
+            src="../assets/img/winntech.png"
+            alt="Winntech Logo"
+            class="logo-img"
+            loading="lazy"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbarContent"
+          aria-controls="mainNavbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-      </div>
-
-      <div class="row" id="launchCards">
-        <!-- Kartu produk akan di-generate oleh backend Laravel -->
-        <!-- Berikut contoh statis yang bisa kamu loop dengan Laravel Blade -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 shadow-sm">
-            <img
-              src="https://via.placeholder.com/400x250?text=Produk+1"
-              class="card-img-top"
-              alt="Produk"
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbarContent">
+          <form
+            class="d-flex position-relative my-2 my-lg-0 ms-lg-3 me-lg-auto"
+            id="navSearchFormGlobal"
+          >
+            <input
+              class="form-control rounded-cover ps-5"
+              type="search"
+              placeholder="Cari peluncuran..."
+              aria-label="Search"
+              id="globalSearchInput"
             />
+            <i
+              class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3"
+            ></i>
+          </form>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/techstocks.html">TechStocks</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../pages/launches.html"
+                >Launches</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5 launch-page-content">
+      <h1 class="mb-4 text-center page-title">Jadwal Peluncuran Teknologi</h1>
+
+      <div class="row gy-4" id="launchCards">
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjYm9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                class="card-img-top launch-card-image"
+                alt="Peluncuran MacBook Pro M4"
+              />
+              <div class="launch-date-badge">15 Okt 2025</div>
+            </div>
             <div class="card-body">
-              <h5 class="card-title">iPhone 16</h5>
-              <p class="card-text">
-                <strong>Tanggal Rilis:</strong> 12 September 2025
+              <h5 class="card-title launch-title">MacBook Pro M4</h5>
+              <p class="card-text launch-company">Apple Inc.</p>
+              <p class="card-text launch-description">
+                Generasi terbaru MacBook Pro dengan chip M4 yang revolusioner,
+                layar Liquid Retina XDR yang ditingkatkan, dan desain termal
+                baru.
               </p>
-              <p class="card-text">
-                iPhone2 generasi terbaru dengan chip A19 Bionic.
-              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
             </div>
           </div>
         </div>
-        <!-- Ulangi struktur ini dengan loop di Laravel -->
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                class="card-img-top launch-card-image"
+                alt="Samsung Galaxy S26 Ultra"
+              />
+              <div class="launch-date-badge">20 Jan 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Galaxy S26 Ultra</h5>
+              <p class="card-text launch-company">Samsung Electronics</p>
+              <p class="card-text launch-description">
+                Flagship terbaru dari Samsung dengan peningkatan signifikan pada
+                kamera, performa Snapdragon Gen 5, dan integrasi AI canggih.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                class="card-img-top launch-card-image"
+                alt="Samsung Galaxy S26 Ultra"
+              />
+              <div class="launch-date-badge">20 Jan 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Galaxy S26 Ultra</h5>
+              <p class="card-text launch-company">Samsung Electronics</p>
+              <p class="card-text launch-description">
+                Flagship terbaru dari Samsung dengan peningkatan signifikan pada
+                kamera, performa Snapdragon Gen 5, dan integrasi AI canggih.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                class="card-img-top launch-card-image"
+                alt="Samsung Galaxy S26 Ultra"
+              />
+              <div class="launch-date-badge">20 Jan 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Galaxy S26 Ultra</h5>
+              <p class="card-text launch-company">Samsung Electronics</p>
+              <p class="card-text launch-description">
+                Flagship terbaru dari Samsung dengan peningkatan signifikan pada
+                kamera, performa Snapdragon Gen 5, dan integrasi AI canggih.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="../assets/img/ipon.png"
+                class="card-img-top launch-card-image"
+                alt="NVIDIA RTX 6090"
+              />
+              <div class="launch-date-badge">05 Nov 2025</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
+              <p class="card-text launch-company">NVIDIA Corporation</p>
+              <p class="card-text launch-description">
+                Kartu grafis konsumen paling powerful dengan arsitektur "Helios"
+                terbaru, menjanjikan performa gaming dan AI tak tertandingi.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="../assets/img/ipon.png"
+                class="card-img-top launch-card-image"
+                alt="NVIDIA RTX 6090"
+              />
+              <div class="launch-date-badge">05 Nov 2025</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
+              <p class="card-text launch-company">NVIDIA Corporation</p>
+              <p class="card-text launch-description">
+                Kartu grafis konsumen paling powerful dengan arsitektur "Helios"
+                terbaru, menjanjikan performa gaming dan AI tak tertandingi.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="../assets/img/ipon.png"
+                class="card-img-top launch-card-image"
+                alt="NVIDIA RTX 6090"
+              />
+              <div class="launch-date-badge">05 Nov 2025</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
+              <p class="card-text launch-company">NVIDIA Corporation</p>
+              <p class="card-text launch-description">
+                Kartu grafis konsumen paling powerful dengan arsitektur "Helios"
+                terbaru, menjanjikan performa gaming dan AI tak tertandingi.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a href="#" class="btn btn-sm btn-secondary-themed w-100"
+                >Baca Selengkapnya <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <footer class="footer pt-5 border-top">
+      <div class="container px-3 px-md-5">
+        <div class="row justify-content-center align-items-start gy-4 gx-md-5">
+          <div class="col-md-3 d-flex flex-column align-items-center">
+            <div
+              class="d-flex align-items-center justify-content-center mb-2 footer-logos-container"
+            >
+              <img
+                src="../assets/img/logo.png"
+                alt="Winnicode Logo"
+                class="img-fluid footer-logo-main"
+                loading="lazy"
+              />
+              <img
+                src="../assets/img/km.png"
+                alt="Kampus Merdeka Logo"
+                class="img-fluid footer-logo-km"
+                loading="lazy"
+              />
+              <img
+                src="../assets/img/winntech.png"
+                alt="Winntech Logo Footer"
+                class="img-fluid footer-logo-main"
+                loading="lazy"
+              />
+            </div>
+            <p class="text-center mb-0 footer-description-text">
+              The Winnicode Journalism Program is a human resource development
+              program aimed at young men and women pursuing careers in the world
+              of reporting.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <p class="fw-semibold mb-3 footer-title">Follow us</p>
+            <div class="social-icons-group">
+              <div class="social-icons-row mb-2">
+                <a href="#"><i class="bi bi-twitter-x fs-4"></i></a>
+                <a href="#"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#"><i class="bi bi-telegram fs-4"></i></a>
+                <a href="#"><i class="bi bi-instagram fs-4"></i></a>
+              </div>
+              <div class="social-icons-row">
+                <a href="#"><i class="bi bi-tiktok fs-4"></i></a>
+                <a href="#"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#"><i class="bi bi-whatsapp fs-4"></i></a>
+                <a href="#"><i class="bi bi-line fs-4"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5 class="fw-bold text-start footer-title">CATEGORIES</h5>
+            <div class="listfoot">
+              <ul class="list-unstyled">
+                <li><a href="../pages/news.html">News</a></li>
+                <li><a href="../pages/techstocks.html">TechStocks</a></li>
+                <li><a href="../pages/launches.html">Launches</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <div class="p-2">
+            <small class="footer-copyright-text">
+              &copy; 2025 PT. Winnicode Garuda Teknologi. All rights reserved
+              <br />
+              by Bayu Sukmo Adji
+            </small>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>

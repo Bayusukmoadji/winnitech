@@ -2,17 +2,38 @@
 /* Basic Setup & Image Background */
 /* ================== */
 body {
-  font-family: "Inter", sans-serif; /* Font default Inter untuk teks panjang */
+  font-family: "Inter", sans-serif;
   background-color: #080a0f;
   color: #e0e0e0;
   margin: 0;
-  padding: 0;
+
+  padding-top: 70px;
   position: relative;
-  background-image: url("../img/star.png");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  padding-top: 70px; /* Sesuaikan dengan tinggi navbar Anda */
+  overflow-x: hidden;
+
+  /* === DIUBAH/DITAMBAHKAN: Untuk layout flex dan video background === */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#background-video-news {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -10;
+  filter: brightness(0.4);
+}
+
+/* === BARU: Styling untuk wrapper Konten Utama === */
+.main-news-content {
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
 }
 
 /* ================== */
@@ -29,26 +50,31 @@ body {
   height: 40px;
 }
 
-.navbar #navSearchForm .form-control {
+/* --- DIUBAH: Selector dari #navSearchForm menjadi #navSearchFormGlobal --- */
+/* --- dan ditambahkan width untuk konsistensi --- */
+.navbar #navSearchFormGlobal .form-control {
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   border-radius: 20px;
   font-size: 0.9rem;
+  width: 300px; /* Lebar standar input search di desktop */
 }
 
-.navbar #navSearchForm .form-control::placeholder {
+/* --- DIUBAH: Selector dari #navSearchForm menjadi #navSearchFormGlobal --- */
+.navbar #navSearchFormGlobal .form-control::placeholder {
   color: #a0a8b0;
 }
 
-.navbar #navSearchForm .bi-search {
+/* --- DIUBAH: Selector dari #navSearchForm menjadi #navSearchFormGlobal --- */
+.navbar #navSearchFormGlobal .bi-search {
   color: #a0a8b0;
 }
 
-/* Link Navigasi di Navbar menggunakan Bebas Neue */
+/* Gaya untuk .navbar-nav .nav-link, .navbar-toggler, dll. dari kode Anda sudah terlihat konsisten */
 .navbar .navbar-nav .nav-link {
   color: #d0d8e0;
-  font-family: "Bebas Neue", sans-serif; /* Menggunakan Bebas Neue */
+  font-family: "Bebas Neue", sans-serif;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   margin: 0 0.35rem;
@@ -59,13 +85,13 @@ body {
 
 .navbar .navbar-nav .nav-link:hover {
   color: #ffffff;
-  background-color: rgba(0, 209, 255, 0.15); /* Aksen: #00D1FF */
+  background-color: rgba(0, 209, 255, 0.15);
 }
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .show > .nav-link {
   color: #080a0f;
-  background-color: #00d1ff; /* Aksen: #00D1FF */
+  background-color: #00d1ff;
   font-weight: normal;
 }
 
@@ -75,7 +101,6 @@ body {
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28200, 208, 224, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-
 /* ================== */
 /* Styling Konten Utama (Carousel, Cards, dll.) */
 /* Font judul di konten kembali menggunakan Inter atau sans-serif standar */
@@ -285,6 +310,8 @@ body {
   border-top: 1px solid rgba(120, 150, 180, 0.15);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  position: relative; /* Pastikan ini ada */
+  z-index: 1; /* Pastikan ini ada, agar di atas video background jika perlu */
 }
 
 .footer p,
@@ -292,13 +319,23 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.footer .col-md-3 p {
-  color: #b0b8c0 !important;
+.footer .footer-logos-container img.footer-logo-main {
+  max-width: 150px;
+  margin: 0 5px; /* Memberi sedikit jarak antar logo */
+}
+
+.footer .footer-logos-container img.footer-logo-km {
+  max-width: 80px;
+  margin: 0 5px;
+}
+
+.footer p.footer-description-text {
+  max-width: 400px;
+  color: #b0b8c0;
   font-size: 0.8rem;
 }
 
-/* Judul di Footer menggunakan Bebas Neue */
-.footer .fw-semibold.mb-3, /* Follow us */
+.footer .fw-semibold.mb-3,
 .footer h5.fw-bold {
   /* CATEGORIES */
   font-family: "Bebas Neue", sans-serif;
@@ -307,6 +344,12 @@ body {
   font-size: 1.5rem;
   letter-spacing: 1px;
   margin-bottom: 1rem !important;
+}
+
+.footer p,
+.footer .list-unstyled a {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
 }
 
 .social-icons-group {
@@ -341,7 +384,6 @@ body {
   margin-bottom: 0.4rem;
 }
 
-/* Link Kategori di Footer menggunakan Bebas Neue */
 .listfoot a {
   font-family: "Bebas Neue", sans-serif;
   color: #b0b8c0 !important;
@@ -360,7 +402,6 @@ body {
   font-size: 0.75rem;
   line-height: 1.4;
 }
-
 /* ================== */
 /* Responsive Adjustments */
 /* ================== */
@@ -414,6 +455,5 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 1rem; /* Ukuran font Inter */
     font-weight: 600;
-    /* letter-spacing: normal; */ /* Reset letter-spacing jika ada */
   }
 }
