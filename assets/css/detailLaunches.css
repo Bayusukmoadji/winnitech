@@ -1,0 +1,406 @@
+/* ================== */
+/* Basic Setup & Video Background */
+/* ================== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #080a0f;
+  color: #e0e0e0;
+  margin: 0;
+  padding-top: 80px; /* Sesuaikan dengan tinggi navbar Anda */
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#background-video-detail-launches {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -10;
+  filter: brightness(0.3); /* Kecerahan video untuk halaman detail */
+}
+
+/* ================== */
+/* Navbar Styling (Idealnya dari file CSS umum) */
+/* ================== */
+.navbar {
+  background-color: rgba(15, 20, 30, 0.75) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.navbar .navbar-brand .logo-img {
+  height: 40px;
+}
+.navbar #navSearchFormGlobal .form-control {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  width: 300px;
+}
+.navbar #navSearchFormGlobal .form-control::placeholder {
+  color: #a0a8b0;
+}
+.navbar #navSearchFormGlobal .bi-search {
+  color: #a0a8b0;
+}
+.navbar .navbar-nav .nav-link {
+  color: #d0d8e0;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.35rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+.navbar .navbar-nav .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(0, 209, 255, 0.15);
+}
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .show > .nav-link {
+  color: #080a0f;
+  background-color: #00d1ff;
+}
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28200, 208, 224, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ================== */
+/* Detail Launch Page Specific Content Styling - DUA KOLOM */
+/* ================== */
+.detail-launch-page-content {
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+  padding-bottom: 3rem; /* Jarak dari footer */
+}
+
+.product-title-main {
+  /* Judul Utama di atas row */
+  font-family: "Bebas Neue", sans-serif;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  font-size: 3rem; /* Ukuran disesuaikan */
+}
+
+.product-subtitle {
+  /* Subjudul di atas row */
+  font-size: 1rem;
+  font-weight: 400;
+  color: #a0a8b0 !important;
+}
+.company-name, /* Ditambahkan untuk styling nama perusahaan di subtitle */
+.launch-date-highlight {
+  color: #00d1ff; /* Warna aksen biru */
+  font-weight: 600;
+}
+
+/* Styling Gambar Produk Utama (Kolom Kiri) */
+.product-image-gallery {
+  /* sticky-lg-top dari class Bootstrap akan aktif di layar lg ke atas */
+  /* Pastikan ada padding atas pada parent jika navbar fixed dan sticky-top digunakan
+     agar tidak tertutup navbar saat scroll awal. Atau atur top pada sticky-lg-top */
+  top: 100px; /* Sesuaikan offset dari atas untuk sticky-top */
+  z-index: 2; /* Agar tidak tertimpa elemen lain saat sticky */
+}
+
+.product-main-image {
+  /* Target untuk tag <img> */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 500px; /* Disesuaikan dari versi simpel */
+  object-fit: contain;
+
+  border-radius: 0.75rem;
+  border: 1px solid rgba(120, 150, 180, 0.25);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 209, 255, 0.05);
+
+  background-color: rgba(20, 25, 40, 0.5);
+
+  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.product-main-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 209, 255, 0.1);
+}
+
+.image-caption {
+  font-size: 0.8rem;
+  color: #808a96;
+  margin-top: 0.75rem; /* Disesuaikan dari versi simpel */
+}
+/* Akhir Styling Gambar Produk Utama */
+
+/* Styling Wrapper Detail Produk (Kolom Kanan) */
+.product-details-wrapper {
+  background-color: rgba(18, 22, 33, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(120, 150, 180, 0.25);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.3s ease-out, transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
+.product-details-wrapper:hover {
+  border-color: rgba(0, 209, 255, 0.7);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35), 0 0 20px rgba(0, 209, 255, 0.1);
+}
+/* Akhir Styling Wrapper Detail Produk */
+
+.product-section .section-title {
+  /* Judul bagian dalam wrapper detail */
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  color: #00d1ff;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 209, 255, 0.3);
+}
+
+.product-description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #c5cdd3;
+}
+
+.features-list {
+  /* Menggunakan style dari versi 2 kolom sebelumnya */
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.9rem;
+}
+.features-list li {
+  padding: 0.35rem 0;
+  color: #b0b8c0;
+  display: flex;
+  align-items: center;
+}
+.features-list li i.text-accent {
+  /* Menggunakan class text-accent dari HTML */
+  /* color: #00d1ff; Sudah dari class */
+  font-size: 1.1em;
+}
+
+.specifications-list dt {
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-top: 0.75rem; /* Disesuaikan */
+  font-size: 0.9rem;
+}
+.specifications-list dd {
+  color: #b0b8c0;
+  margin-left: 0;
+  margin-bottom: 0.75rem; /* Disesuaikan */
+  font-size: 0.85rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(0, 209, 255, 0.3);
+}
+
+.btn-primary-themed {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  padding: 0.7rem 1.8rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none;
+  font-size: 1rem;
+  background-color: #00d1ff;
+  border-color: #00d1ff;
+  color: #080a0f;
+}
+.btn-primary-themed:hover {
+  background-color: #00a8cc;
+  border-color: #00a8cc;
+  color: #080a0f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
+}
+
+/* ================== */
+/* Footer Styling (Idealnya dari file CSS umum) */
+/* ================== */
+.footer {
+  background-color: rgba(10, 10, 15, 0.75);
+  color: #a0a8b0;
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid rgba(120, 150, 180, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 1;
+}
+.footer p,
+.footer .list-unstyled a {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+}
+.footer .footer-logos-container img.footer-logo-main {
+  max-width: 150px;
+  margin: 0 5px;
+}
+.footer .footer-logos-container img.footer-logo-km {
+  max-width: 80px;
+  margin: 0 5px;
+}
+.footer p.footer-description-text {
+  max-width: 400px;
+  color: #b0b8c0 !important;
+  font-size: 0.8rem;
+}
+.footer .footer-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: normal;
+  color: #e0e0e0 !important;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem !important;
+}
+.social-icons-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.social-icons-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.social-icons-row:last-child {
+  margin-bottom: 0;
+}
+.social-icons-row a i.bi {
+  color: #b0b8c0 !important;
+  transition: color 0.3s ease;
+  font-size: 1.3rem !important;
+}
+.social-icons-row a:hover i.bi {
+  color: #00d1ff !important;
+}
+.listfoot ul {
+  padding-left: 0;
+}
+.listfoot li {
+  margin-bottom: 0.4rem;
+}
+.listfoot a {
+  font-family: "Bebas Neue", sans-serif;
+  color: #b0b8c0 !important;
+  transition: color 0.3s ease;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0;
+  display: inline-block;
+}
+.listfoot a:hover {
+  color: #00d1ff !important;
+}
+.footer small.footer-copyright-text {
+  color: #88929b;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-family: "Inter", sans-serif;
+}
+
+/* ================== */
+/* Responsive Adjustments */
+/* ================== */
+@media (max-width: 991.98px) {
+  /* Tablet (Bootstrap 'lg' breakpoint) */
+  .navbar #navSearchFormGlobal {
+    max-width: 300px;
+    width: 100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .navbar #navSearchFormGlobal .form-control {
+    width: 100%;
+  }
+  .navbar .navbar-nav {
+    align-items: center;
+  }
+  .navbar .navbar-nav .nav-item {
+    margin: 0.25rem 0;
+  }
+
+  .product-title-main {
+    font-size: 2.6rem;
+  }
+  .product-image-gallery.sticky-lg-top {
+    /* Nonaktifkan sticky di bawah lg */
+    position: static !important;
+  }
+  .product-details-wrapper {
+    padding: 1.5rem 2rem;
+    margin-top: 2rem; /* Tambahkan margin atas saat kolom stack */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile (Bootstrap 'md' breakpoint) */
+  body {
+    padding-top: 60px;
+  }
+  .product-main-image {
+    max-height: 350px;
+  } /* Tinggi gambar di mobile */
+  .product-title-main {
+    font-size: 2rem;
+  }
+  .product-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .product-details-wrapper {
+    padding: 1.5rem;
+  }
+  .product-section .section-title {
+    font-size: 1.6rem;
+  }
+  .product-description,
+  .features-list,
+  .specifications-list dd,
+  .specifications-list dt {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Small Mobile (Bootstrap 'sm' breakpoint) */
+  .product-title-main {
+    font-size: 1.8rem;
+  }
+  .product-details-wrapper {
+    padding: 1rem 1.25rem;
+  }
+  .product-section .section-title {
+    font-size: 1.4rem;
+  }
+}

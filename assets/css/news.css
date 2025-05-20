@@ -131,15 +131,8 @@ body {
 }
 
 #carouselItems .carousel-item {
-  border: 1px solid rgba(120, 150, 180, 0.15);
-  box-shadow: none;
   transition: all 0.3s ease;
   box-sizing: border-box;
-}
-
-#carouselItems > a:hover .carousel-item {
-  border-color: rgba(0, 209, 255, 0.5);
-  box-shadow: 0 0 15px rgba(0, 209, 255, 0.1);
 }
 
 .object-fit-cover {
