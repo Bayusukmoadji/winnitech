@@ -1,41 +1,65 @@
+/* File: ../assets/css/techstocks.css */
+
 /* ================== */
-/* Basic Setup & Image Background */
+/* Basic Setup & Video Background */
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
-  background-color: #080a0f; /* Warna fallback */
-  color: #e0e0e0; /* Warna teks default terang */
+  background-color: #080a0f; /* Warna fallback jika video tidak termuat */
+  color: #e0e0e0;
   margin: 0;
   padding: 0;
-  position: relative;
-  background-image: url("../img/star.png"); /* Latar belakang gambar star.png */
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  padding-top: 80px; /* Sesuaikan dengan tinggi navbar Anda, mungkin perlu sedikit lebih */
+  position: relative; /* Bisa jadi tidak diperlukan jika video z-index negatif */
+  /* Hapus background-image properties untuk body */
+  /* background-image: url("../img/star.png"); */
+  /* background-size: cover; */
+  /* background-position: center center; */
+  /* background-attachment: fixed; */
+  padding-top: 80px; /* Tetap ada untuk fixed navbar */
+  overflow-x: hidden; /* Mencegah scroll horizontal jika ada konten lebar */
+}
+
+#background-video-techstock {
+  /* ID BARU UNTUK VIDEO DI HALAMAN INI */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: -1; /* Di belakang semua konten lain */
+  /* Pastikan tidak ada filter atau opacity yang mengganggu di sini */
 }
 
 /* ================== */
-/* Navbar Styling (Mirip News Page) */
+/* Navbar Styling */
 /* ================== */
 .navbar {
   background-color: rgba(15, 20, 30, 0.75) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: fixed; /* Bootstrap .fixed-top sudah mengatur ini */
+  width: 100%; /* Pastikan navbar mengambil lebar penuh */
+  z-index: 1030; /* z-index default Bootstrap untuk fixed navbar */
 }
 
 .navbar .navbar-brand .logo-img {
-  height: 40px; /* Sesuaikan jika perlu */
+  height: 40px;
+}
+
+.navbar #navSearchFormGlobal {
+  max-width: 450px;
 }
 
 .navbar #navSearchFormGlobal .form-control {
-  /* ID diubah untuk global search */
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   border-radius: 20px;
   font-size: 0.9rem;
+  width: 300px;
 }
 
 .navbar #navSearchFormGlobal .form-control::placeholder {
@@ -48,25 +72,25 @@ body {
 
 .navbar .navbar-nav .nav-link {
   color: #d0d8e0;
-  font-family: "Bebas Neue", sans-serif; /* Font Bebas Neue untuk Nav Link */
-  font-size: 1.2rem; /* Sedikit lebih besar untuk Bebas Neue */
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
-  margin: 0 0.35rem; /* Jarak antar item navigasi */
-  border-radius: 4px; /* Sedikit lebih kotak */
+  margin: 0 0.35rem;
+  border-radius: 4px;
   transition: all 0.3s ease;
   letter-spacing: 1px;
 }
 
 .navbar .navbar-nav .nav-link:hover {
   color: #ffffff;
-  background-color: rgba(0, 209, 255, 0.15); /* Aksen: #00D1FF */
+  background-color: rgba(0, 209, 255, 0.15);
 }
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .show > .nav-link {
   color: #080a0f;
-  background-color: #00d1ff; /* Aksen: #00D1FF */
-  font-weight: normal; /* Bebas Neue sudah bold */
+  background-color: #00d1ff;
+  font-weight: normal;
 }
 
 .navbar-toggler {
@@ -79,44 +103,22 @@ body {
 /* ================== */
 /* TechStock Page Specific Content Styling */
 /* ================== */
+.techstock-page-content {
+  /* Tambahkan position relative jika belum ada */
+  position: relative;
+  z-index: 1; /* Agar di atas video background */
+}
+
 .techstock-page-content .page-title {
   font-family: "Bebas Neue", sans-serif;
   color: #ffffff;
-  font-size: 3.5rem; /* Ukuran besar untuk Bebas Neue */
+  font-size: 3.5rem;
   letter-spacing: 2px;
-  margin-bottom: 2.5rem !important; /* Override Bootstrap mb-4 jika perlu */
+  margin-bottom: 2.5rem !important;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.search-wrapper-techstock {
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.search-input-techstock {
-  /* Styling untuk input search di halaman TechStock */
-  background-color: rgba(20, 25, 40, 0.7);
-  border: 1px solid rgba(120, 150, 180, 0.25);
-  color: #e0e0e0;
-  padding: 0.75rem 1.25rem; /* Padding lebih besar */
-  border-radius: 8px; /* Sudut lebih membulat */
-  font-size: 1.1rem;
-}
-
-.search-input-techstock::placeholder {
-  color: #808a96;
-}
-
-.search-input-techstock:focus {
-  background-color: rgba(25, 30, 45, 0.85);
-  border-color: #00d1ff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 209, 255, 0.25);
-  color: #ffffff;
-}
-
 .no-results-message-techstock {
-  /* Styling untuk pesan "tidak ada hasil" */
   color: #808a96;
   font-size: 1.1rem;
   padding: 1.5rem;
@@ -126,75 +128,180 @@ body {
 }
 
 /* Kartu Saham */
-.stock-card-item .card {
-  background-color: rgba(
-    18,
-    22,
-    33,
-    0.75
-  ); /* Latar lebih gelap dan semi-transparan */
+.stock-card-item .stock-card {
+  background-color: rgba(18, 22, 33, 0.75);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   color: #c5cdd3;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 10px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  /* border-color diatur oleh JS, kita beri default di sini */
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(120, 150, 180, 0.2); /* Border default halus */
+  border-color: rgba(120, 150, 180, 0.25);
+  display: flex;
+  flex-direction: column;
 }
 
-.stock-card-item .card:hover {
-  transform: scale(1.03); /* Efek scale dari CSS asli Anda */
-  border-color: #00d1ff; /* Aksen hover umum */
-  box-shadow: 0 4px 20px rgba(0, 209, 255, 0.15);
+.stock-card-item .stock-card:hover {
+  transform: translateY(-5px) scale(1.02);
 }
 
-.stock-card-item .card-title {
-  /* Simbol Saham */
+.stock-card-item .card.border-success-themed:hover {
+  border-color: #00d1ff !important;
+  box-shadow: 0 6px 25px rgba(0, 209, 255, 0.35) !important;
+}
+.stock-card-item .card.border-danger-themed:hover {
+  border-color: #ff66c4 !important;
+  box-shadow: 0 6px 25px rgba(255, 102, 196, 0.35) !important;
+}
+
+.stock-card-item .card-header {
+  background-color: rgba(30, 38, 58, 0.5);
+  border-bottom: 1px solid rgba(120, 150, 180, 0.2);
+  padding: 0.75rem 1rem;
+}
+
+.stock-logo,
+.stock-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 2px;
+  flex-shrink: 0;
+}
+.stock-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem; /* Besar untuk simbol */
-  letter-spacing: 1px;
+  font-size: 1.4rem;
+  color: #707880;
+  background-color: #333d4f;
+  padding: 0;
+}
+
+.stock-card-item .stock-info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stock-card-item .stock-company-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
   color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 0.05rem !important;
+}
+.stock-card-item .stock-symbol {
+  font-size: 0.8rem;
+  color: #808a96;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.stock-card-item .card-body {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.stock-price-large {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.2rem;
+  color: #ffffff;
+  line-height: 1;
+}
+.stock-change-large {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.stock-change-large .stock-change-absolute {
+  font-size: 0.8rem;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.stock-divider {
+  border-color: rgba(120, 150, 180, 0.15);
+  margin-top: 0.5rem;
   margin-bottom: 0.75rem;
 }
 
-.stock-card-item .card-text {
-  font-size: 0.9rem;
-  line-height: 1.6;
+.stock-details p {
+  font-size: 0.8rem;
+  color: #b0b8c0;
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+.stock-details p strong {
+  color: #d0d8e0;
+  min-width: 90px;
+  display: inline-block;
 }
 
-.stock-card-item .card-text .text-success {
-  color: #00d1ff !important; /* Warna Kenaikan Saham */
+.stock-card-item .card-text .text-success-themed,
+.stock-card-item .card-header .text-success-themed {
+  color: #00d1ff !important;
   font-weight: 600;
 }
-
-.stock-card-item .card-text .text-danger {
-  color: #ff66c4 !important; /* Warna Penurunan Saham */
+.stock-card-item .card-text .text-danger-themed,
+.stock-card-item .card-header .text-danger-themed {
+  color: #ff66c4 !important;
   font-weight: 600;
 }
-
-/* Override border color dari Bootstrap untuk kartu saham */
-.stock-card-item .card.border-success {
-  border-color: rgba(
-    0,
-    209,
-    255,
-    0.6
-  ) !important; /* Warna Kenaikan Saham untuk Border */
+.stock-card-item .card.border-success-themed {
+  border-color: rgba(0, 209, 255, 0.6) !important;
 }
-.stock-card-item .card.border-danger {
-  border-color: rgba(
-    255,
-    102,
-    196,
-    0.6
-  ) !important; /* Warna Penurunan Saham untuk Border */
+.stock-card-item .card.border-danger-themed {
+  border-color: rgba(255, 102, 196, 0.6) !important;
+}
+
+.stock-card-item .card-footer {
+  background-color: rgba(30, 38, 58, 0.3);
+  border-top: 1px solid rgba(120, 150, 180, 0.2);
+  padding: 0.5rem 1rem;
+}
+
+.stock-website-link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none;
+}
+
+.stock-website-link.link-positive {
+  color: #00d1ff;
+  background-color: rgba(0, 209, 255, 0.1);
+  border-color: rgba(0, 209, 255, 0.3);
+}
+.stock-website-link.link-positive:hover {
+  background-color: rgba(0, 209, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(0, 209, 255, 0.7);
+}
+
+.stock-website-link.link-negative {
+  color: #ff66c4;
+  background-color: rgba(255, 102, 196, 0.1);
+  border-color: rgba(255, 102, 196, 0.3);
+}
+.stock-website-link.link-negative:hover {
+  background-color: rgba(255, 102, 196, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 102, 196, 0.7);
 }
 
 /* ================== */
-/* Footer Styling (Mirip News Page) */
+/* Footer Styling */
 /* ================== */
 .footer {
   background-color: rgba(10, 10, 15, 0.75);
@@ -204,25 +311,35 @@ body {
   border-top: 1px solid rgba(120, 150, 180, 0.15);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  position: relative; /* Agar z-index bekerja jika diperlukan di atas video */
+  z-index: 1;
 }
 
 .footer p,
 .footer .list-unstyled a {
   font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
 }
 
-.footer .col-md-3 p {
-  /* Deskripsi di footer */
+.footer .footer-logos-container img.footer-logo-main {
+  max-width: 150px;
+  margin: 0 5px;
+}
+.footer .footer-logos-container img.footer-logo-km {
+  max-width: 80px;
+  margin: 0 5px;
+}
+.footer p.footer-description-text {
+  max-width: 400px;
   color: #b0b8c0 !important;
   font-size: 0.8rem;
 }
 
 .footer .footer-title {
-  /* Kelas kustom untuk judul di footer */
-  font-family: "Bebas Neue", sans-serif; /* Bebas Neue untuk judul footer */
-  font-weight: normal; /* Bebas Neue sudah bold */
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: normal;
   color: #e0e0e0 !important;
-  font-size: 1.5rem; /* Disesuaikan untuk Bebas Neue */
+  font-size: 1.5rem;
   letter-spacing: 1px;
   margin-bottom: 1rem !important;
 }
@@ -259,10 +376,10 @@ body {
   margin-bottom: 0.4rem;
 }
 .listfoot a {
-  font-family: "Bebas Neue", sans-serif; /* Bebas Neue untuk link kategori footer */
+  font-family: "Bebas Neue", sans-serif;
   color: #b0b8c0 !important;
   transition: color 0.3s ease;
-  font-size: 1.1rem; /* Disesuaikan untuk Bebas Neue */
+  font-size: 1.1rem;
   letter-spacing: 0.5px;
   padding: 0.2rem 0;
   display: inline-block;
@@ -282,7 +399,6 @@ body {
 /* Responsive Adjustments */
 /* ================== */
 @media (max-width: 991.98px) {
-  /* lg breakpoint */
   .navbar #navSearchFormGlobal {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -303,20 +419,30 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* md breakpoint */
   body {
-    padding-top: 60px; /* Sesuaikan jika tinggi navbar berubah signifikan di mobile */
+    padding-top: 60px;
   }
   .techstock-page-content .page-title {
     font-size: 2.2rem;
     margin-bottom: 2rem !important;
   }
-  .search-input-techstock {
-    font-size: 1rem;
-    padding: 0.6rem 1rem;
+  .stock-card-item .stock-company-name {
+    font-size: 1.3rem;
+    line-height: 1.1;
   }
-  .stock-card-item .card-title {
-    /* Simbol Saham */
-    font-size: 1.6rem;
+  .stock-card-item .stock-symbol {
+    line-height: 1.1;
+  }
+  .stock-price-large {
+    font-size: 1.8rem;
+  }
+  .stock-change-large {
+    font-size: 1rem;
+  }
+  .stock-details p {
+    font-size: 0.75rem;
+  }
+  .stock-details p strong {
+    min-width: 80px;
   }
 }
