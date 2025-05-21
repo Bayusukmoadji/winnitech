@@ -411,6 +411,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
   body {
     padding-top: 60px;
   }

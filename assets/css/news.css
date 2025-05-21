@@ -419,6 +419,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
   .description-text p {
     font-size: 1rem;
   }
