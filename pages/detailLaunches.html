@@ -89,7 +89,7 @@
       </div>
     </nav>
 
-    <div class="container my-5 detail-launch-page-content">
+    <div class="container mt-5 detail-launch-page-content mb-0">
       <h1 class="product-title-main text-center display-4 mb-3">
         MacBook Pro M4
       </h1>
@@ -106,9 +106,6 @@
               alt="MacBook Pro M4"
               class="img-fluid product-main-image"
             />
-            <div class="image-caption text-center mt-2">
-              Sample image of MacBook Pro M4
-            </div>
           </div>
         </div>
 
@@ -188,6 +185,216 @@
         </div>
       </div>
     </div>
+
+    <section class="product-comments-section mt-5 pt-4">
+      <div class="comments-container mx-auto my-3">
+        <h2 class="section-title text-center mb-4">Discussion & Comments</h2>
+
+        <div class="text-center mb-4" id="addCommentTriggerContainer">
+          <button
+            class="btn btn-primary-themed"
+            type="button"
+            id="toggleCommentFormButton"
+            data-bs-toggle="collapse"
+            data-bs-target="#commentFormContainer"
+            aria-expanded="false"
+            aria-controls="commentFormContainer"
+          >
+            <i class="bi bi-pencil-square me-2"></i>Leave a Comment
+          </button>
+        </div>
+
+        <div class="collapse" id="commentFormContainer">
+          <div class="comment-form-wrapper mb-5">
+            <h4 class="comment-form-title text-center mb-3">
+              Write Your Comment
+            </h4>
+            <form id="commentForm">
+              <div class="mb-3">
+                <label for="commenterName" class="form-label">Your Name</label>
+                <input
+                  type="text"
+                  class="form-control form-control-futuristic"
+                  id="commenterName"
+                  placeholder="e.g., John Doe"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="commentText" class="form-label">Your Comment</label>
+                <textarea
+                  class="form-control form-control-futuristic"
+                  id="commentText"
+                  rows="4"
+                  placeholder="Write your comment here..."
+                  required
+                ></textarea>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn btn-secondary-themed me-2"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#commentFormContainer"
+                  aria-expanded="true"
+                  aria-controls="commentFormContainer"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-primary-themed">
+                  <i class="bi bi-chat-left-text-fill me-2"></i>Submit Comment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- <hr class="comments-divider my-5" /> -->
+
+        <h3 class="comments-list-title mb-4">
+          Comments (<span id="commentCountPlaceholder">3</span>)
+        </h3>
+        <div class="comments-list">
+          <div class="comment-item" id="comment-1">
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="commenter-name">John Doe</span>
+                <span class="comment-timestamp">May 21, 2025, 9:30 PM</span>
+              </div>
+              <p class="comment-text">
+                This product looks very promising! Can't wait for the M4 chip
+                performance. The design is also very sleek and modern. Awesome!
+              </p>
+              <div class="comment-actions mt-2">
+                <button
+                  class="btn btn-link btn-sm reply-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#replyForm-1"
+                  aria-expanded="false"
+                  aria-controls="replyForm-1"
+                >
+                  <i class="bi bi-reply-fill"></i> Reply
+                </button>
+              </div>
+              <div class="reply-form-container collapse mt-3" id="replyForm-1">
+                <form class="reply-form">
+                  <h5 class="reply-form-title mb-2">
+                    Write a reply to John Doe
+                  </h5>
+                  <div class="mb-2">
+                    <input
+                      type="text"
+                      class="form-control form-control-sm form-control-futuristic"
+                      name="replyName"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div class="mb-2">
+                    <textarea
+                      class="form-control form-control-sm form-control-futuristic"
+                      name="replyText"
+                      rows="3"
+                      placeholder="Your Reply..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary-themed btn-sm">
+                    Submit Reply
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary-themed btn-sm ms-2"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#replyForm-1"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+
+              <div class="comment-replies mt-3">
+                <div class="comment-item reply-item" id="comment-1-1">
+                  <div class="comment-content">
+                    <div class="comment-header">
+                      <span class="commenter-name">ReplyGuy</span>
+                      <span class="comment-timestamp"
+                        >May 21, 2025, 9:45 PM</span
+                      >
+                    </div>
+                    <p class="comment-text">
+                      I agree, John! The M4 sounds like a beast. Any idea if
+                      they improved the keyboard?
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-item mb-5" id="comment-2">
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="commenter-name">Alice Smith</span>
+                <span class="comment-timestamp">May 20, 2025, 10:15 AM</span>
+              </div>
+              <p class="comment-text">
+                Finally, a significant upgrade! The specs look great. Hopefully,
+                the battery life lives up to the claims. Any info on the price?
+              </p>
+              <div class="comment-actions mt-2">
+                <button
+                  class="btn btn-link btn-sm reply-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#replyForm-2"
+                  aria-expanded="false"
+                  aria-controls="replyForm-2"
+                >
+                  <i class="bi bi-reply-fill"></i> Reply
+                </button>
+              </div>
+              <div class="reply-form-container collapse mt-3" id="replyForm-2">
+                <form class="reply-form">
+                  <h5 class="reply-form-title mb-2">
+                    Write a reply to Alice Smith
+                  </h5>
+                  <div class="mb-2">
+                    <input
+                      type="text"
+                      class="form-control form-control-sm form-control-futuristic"
+                      placeholder="Your Name"
+                      required
+                    />
+                  </div>
+                  <div class="mb-2">
+                    <textarea
+                      class="form-control form-control-sm form-control-futuristic"
+                      rows="3"
+                      placeholder="Your Reply..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary-themed btn-sm">
+                    Submit Reply
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary-themed btn-sm ms-2"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#replyForm-2"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+              <div class="comment-replies mt-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer pt-5 border-top">
       <div class="container px-3 px-md-5">
