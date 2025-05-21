@@ -351,15 +351,14 @@ body {
   }
 
   .product-title-main {
-    font-size: 2.6rem;
+    font-size: 2.6rem; /* Sudah ada, konsisten dengan pola scaling */
   }
   .product-image-gallery.sticky-lg-top {
-    /* Nonaktifkan sticky di bawah lg */
     position: static !important;
   }
   .product-details-wrapper {
     padding: 1.5rem 2rem;
-    margin-top: 2rem; /* Tambahkan margin atas saat kolom stack */
+    margin-top: 2rem;
   }
 }
 
@@ -370,9 +369,9 @@ body {
   }
   .product-main-image {
     max-height: 350px;
-  } /* Tinggi gambar di mobile */
+  }
   .product-title-main {
-    font-size: 2rem;
+    font-size: 2rem; /* Sudah ada, konsisten dengan pola scaling */
   }
   .product-subtitle {
     font-size: 0.9rem;
@@ -382,25 +381,38 @@ body {
     padding: 1.5rem;
   }
   .product-section .section-title {
-    font-size: 1.6rem;
+    font-size: 1.6rem; /* Sudah ada, konsisten dengan pola scaling */
   }
   .product-description,
   .features-list,
   .specifications-list dd,
   .specifications-list dt {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* Sudah ada, konsisten dengan pola scaling */
+  }
+
+  /* === PENYESUAIAN TOMBOL UTAMA AGAR MIRIP SCALINGNYA DGN launches.html === */
+  .btn-primary-themed.btn-lg {
+    /* Target spesifik tombol besar di halaman detail */
+    font-size: 0.9rem; /* Kecilkan dari base 1rem */
+    padding: 0.6rem 1.5rem; /* Kecilkan dari base 0.7rem 1.8rem */
   }
 }
 
 @media (max-width: 576px) {
   /* Small Mobile (Bootstrap 'sm' breakpoint) */
   .product-title-main {
-    font-size: 1.8rem;
+    font-size: 1.8rem; /* Sudah ada, konsisten dengan pola scaling */
   }
   .product-details-wrapper {
     padding: 1rem 1.25rem;
   }
   .product-section .section-title {
-    font-size: 1.4rem;
+    font-size: 1.4rem; /* Sudah ada, konsisten dengan pola scaling */
+  }
+
+  /* === PENYESUAIAN TOMBOL UTAMA LEBIH LANJUT UNTUK LAYAR SANGAT KECIL === */
+  .btn-primary-themed.btn-lg {
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
   }
 }
