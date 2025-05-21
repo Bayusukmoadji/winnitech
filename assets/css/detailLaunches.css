@@ -275,12 +275,6 @@ body {
   text-align: left; /* Ratakan kiri untuk daftar komentar */
 }
 
-/* Tombol "Leave a Comment" */
-#addCommentTriggerContainer .btn-primary-themed {
-  /* Style .btn-primary-themed umum akan berlaku. 
-       Tambahkan override di sini jika perlu style khusus untuk tombol trigger ini. */
-}
-
 /* Wrapper untuk form komentar utama yang bisa collapse */
 .comment-form-wrapper {
   background-color: rgba(20, 25, 45, 0.6);
@@ -413,11 +407,6 @@ body {
   line-height: 1.6;
   color: #c5cdd3;
   margin-bottom: 0;
-}
-
-/* Aksi Balasan pada Komentar */
-.comment-actions {
-  /* Tidak perlu style khusus jika hanya berisi tombol */
 }
 
 .reply-button {
