@@ -68,7 +68,7 @@ html {
   background-color: transparent;
   transition: all 0.3s ease-out;
   transform-origin: center center;
-  cursor: pointer; /* Menegaskan ini bisa diklik */
+  cursor: pointer;
 }
 
 .enter-site-link:hover {
@@ -79,19 +79,13 @@ html {
   transform: translateY(-2px);
 }
 
-/* HAPUS styling untuk .enter-site-link.portal-fade-out dan #portal-effect */
-/* .enter-site-link.portal-fade-out { ... } */
-/* #portal-effect { ... } */
-/* @keyframes drStrangePortalAnimation { ... } */
-/* #portal-effect.active { ... } */
-
 /* Keyframes BARU untuk animasi klik yang simpel & futuristik */
 @keyframes simpleFuturisticClick {
   0% {
     /* Mulai dari state hover atau sedikit lebih ditekan */
     transform: translateY(-2px) scale(1.03);
     opacity: 1;
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.5); /* Glow lebih terang */
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.5);
     background-color: rgba(0, 209, 255, 0.2);
     border-color: #00d1ff;
   }
@@ -99,7 +93,7 @@ html {
     /* Mulai mengecil dan memudar */
     transform: translateY(-2px) scale(0.9);
     opacity: 0.6;
-    box-shadow: 0 0 10px rgba(0, 209, 255, 0.2); /* Glow meredup */
+    box-shadow: 0 0 10px rgba(0, 209, 255, 0.2);
   }
   100% {
     /* Hilang sepenuhnya */
@@ -112,11 +106,10 @@ html {
 /* Kelas BARU yang ditambahkan oleh JavaScript untuk memicu animasi simpel */
 .enter-site-link.clicked-effect {
   animation-name: simpleFuturisticClick;
-  animation-duration: 0.5s; /* Animasi lebih cepat dan simpel */
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
-  pointer-events: none; /* Mencegah klik ganda */
-  /* Tidak perlu reset transform di sini jika keyframe 0% sudah mengaturnya */
+  pointer-events: none;
 }
 
 /* ================== */

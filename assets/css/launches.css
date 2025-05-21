@@ -3,11 +3,11 @@
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
-  background-color: #080a0f; /* Warna dasar jika video tidak load */
+  background-color: #080a0f;
   color: #e0e0e0;
   margin: 0;
-  padding-top: 80px; /* Sesuaikan dengan tinggi navbar Anda */
-  position: relative; /* Diperlukan untuk z-index video */
+  padding-top: 80px;
+  position: relative;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -22,10 +22,8 @@ body {
   height: 100vh;
   object-fit: cover;
   object-position: center center;
-  z-index: -10; /* Pastikan di belakang semua konten */
-  filter: brightness(
-    0.4
-  ); /* Gelapkan video sedikit agar teks lebih mudah dibaca */
+  z-index: -10;
+  filter: brightness(0.4);
 }
 
 /* ================== */
@@ -48,7 +46,7 @@ body {
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
-  border-radius: 20px; /* rounded-cover */
+  border-radius: 20px;
   font-size: 0.9rem;
   width: 300px;
 }
@@ -89,15 +87,15 @@ body {
 /* ================== */
 .launch-page-content {
   position: relative;
-  z-index: 1; /* Di atas video background */
-  flex-grow: 1; /* Agar konten mengisi ruang vertikal */
-  padding-bottom: 3rem; /* Beri jarak dengan footer */
+  z-index: 1;
+  flex-grow: 1;
+  padding-bottom: 3rem;
 }
 
 .launch-page-content .page-title {
   font-family: "Bebas Neue", sans-serif;
   color: #ffffff;
-  font-size: 3.2rem; /* Sedikit lebih kecil dari TechStocks jika diinginkan */
+  font-size: 3.2rem;
   letter-spacing: 1.5px;
   margin-bottom: 2.5rem !important;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
@@ -108,7 +106,7 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   padding: 0.5rem 1.25rem;
-  border-radius: 20px; /* rounded-pill effect */
+  border-radius: 20px;
   transition: all 0.3s ease;
   border-width: 1px;
   border-style: solid;
@@ -142,28 +140,28 @@ body {
 
 /* Kartu Peluncuran */
 .launch-card {
-  background-color: rgba(18, 22, 33, 0.75); /* Mirip stock card */
+  background-color: rgba(18, 22, 33, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #c5cdd3;
-  border-radius: 12px; /* Sedikit lebih besar radiusnya */
+  border-radius: 12px;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid rgba(120, 150, 180, 0.25);
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Untuk memastikan image container tidak keluar */
+  overflow: hidden;
 }
 
 .launch-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(0, 209, 255, 0.7); /* Aksen biru saat hover */
+  border-color: rgba(0, 209, 255, 0.7);
   box-shadow: 0 8px 30px rgba(0, 209, 255, 0.25);
 }
 
 .launch-card-img-container {
   position: relative;
   width: 100%;
-  padding-top: 62.5%; /* Aspect ratio 16:9 (250 / 400 = 0.625) */
+  padding-top: 62.5%;
   overflow: hidden;
 }
 
@@ -184,7 +182,7 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgba(0, 209, 255, 0.85); /* Aksen biru */
+  background-color: rgba(0, 209, 255, 0.85);
   color: #080a0f;
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
@@ -196,7 +194,7 @@ body {
 }
 
 .launch-card .card-body {
-  padding: 1.25rem; /* Lebih banyak padding */
+  padding: 1.25rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -212,7 +210,7 @@ body {
 
 .launch-company {
   font-size: 0.85rem;
-  color: #00d1ff; /* Aksen biru untuk nama perusahaan */
+  color: #00d1ff;
   font-weight: 600;
   margin-bottom: 0.75rem;
   letter-spacing: 0.5px;
@@ -223,7 +221,7 @@ body {
   color: #b0b8c0;
   line-height: 1.6;
   margin-bottom: 1rem;
-  flex-grow: 1; /* Agar deskripsi mengisi ruang sebelum footer */
+  flex-grow: 1;
 }
 
 .launch-card .card-footer {
@@ -243,10 +241,10 @@ body {
   border-top: 1px solid rgba(120, 150, 180, 0.15);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  position: relative; /* Sudah relative, z-index 1 jika ada */
+  position: relative;
   z-index: 1;
 }
-/* ... (Salin sisa style footer dari techstocks.css jika belum ada di common.css) ... */
+
 .footer p,
 .footer .list-unstyled a {
   font-family: "Inter", sans-serif;
@@ -349,7 +347,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 60px; /* Sesuaikan dengan tinggi navbar mobile Anda */
+    padding-top: 60px;
   }
   .launch-page-content .page-title {
     font-size: 2.2rem;
@@ -376,6 +374,6 @@ body {
     font-size: 1.8rem;
   }
   .launch-card-img-container {
-    padding-top: 75%; /* Gambar mungkin lebih tinggi di mobile 4:3 */
+    padding-top: 75%;
   }
 }

@@ -50,15 +50,13 @@ body {
   height: 40px;
 }
 
-/* --- DIUBAH: Selector dari #navSearchForm menjadi #navSearchFormGlobal --- */
-/* --- dan ditambahkan width untuk konsistensi --- */
 .navbar #navSearchFormGlobal .form-control {
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
   border-radius: 20px;
   font-size: 0.9rem;
-  width: 300px; /* Lebar standar input search di desktop */
+  width: 300px;
 }
 
 /* --- DIUBAH: Selector dari #navSearchForm menjadi #navSearchFormGlobal --- */
@@ -71,7 +69,6 @@ body {
   color: #a0a8b0;
 }
 
-/* Gaya untuk .navbar-nav .nav-link, .navbar-toggler, dll. dari kode Anda sudah terlihat konsisten */
 .navbar .navbar-nav .nav-link {
   color: #d0d8e0;
   font-family: "Bebas Neue", sans-serif;
@@ -106,7 +103,7 @@ body {
 /* Font judul di konten kembali menggunakan Inter atau sans-serif standar */
 /* ================== */
 .description-text p {
-  font-family: "Inter", sans-serif; /* Atau Arial jika preferensi */
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   color: #b0b8c0;
   line-height: 1.6;
@@ -303,8 +300,8 @@ body {
   border-top: 1px solid rgba(120, 150, 180, 0.15);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  position: relative; /* Pastikan ini ada */
-  z-index: 1; /* Pastikan ini ada, agar di atas video background jika perlu */
+  position: relative;
+  z-index: 1;
 }
 
 .footer p,
@@ -314,7 +311,7 @@ body {
 
 .footer .footer-logos-container img.footer-logo-main {
   max-width: 150px;
-  margin: 0 5px; /* Memberi sedikit jarak antar logo */
+  margin: 0 5px;
 }
 
 .footer .footer-logos-container img.footer-logo-km {
@@ -396,16 +393,21 @@ body {
   line-height: 1.4;
 }
 /* ================== */
-/* Responsive Adjustments */
+/* Responsive Adjustments UNTUK NEWS.CSS */
 /* ================== */
 @media (max-width: 991.98px) {
-  .navbar #navSearchForm {
+  .navbar #navSearchFormGlobal {
+    /* === DIUBAH: Selector dan style disamakan === */
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    max-width: 300px;
     width: 100%;
-    max-width: none;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .navbar #navSearchFormGlobal .form-control {
+    /* === DITAMBAHKAN === */
+    width: 100%;
   }
   .navbar .navbar-nav {
     align-items: center;
@@ -414,42 +416,65 @@ body {
     margin: 0.25rem 0;
   }
   .navbar .navbar-nav .nav-link {
-    font-size: 1.1rem; /* Ukuran Bebas Neue di mobile navbar */
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 768px) {
+  /* Mobile */
   html {
     overflow-x: hidden;
+  }
+  body {
+    /* === DITAMBAHKAN === */
+    padding-top: 60px;
   }
   .description-text p {
     font-size: 1rem;
   }
-  /* Judul di Carousel KEMBALI menggunakan Inter & ukuran disesuaikan */
   #heroCarousel .card-img-overlay .h5 {
     font-family: "Inter", sans-serif;
     font-weight: 700;
     font-size: 1.6rem;
   }
-  /* Judul berita di card KEMBALI menggunakan Inter & ukuran disesuaikan */
   .news-title {
+    /* Judul berita di card */
     font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
   }
-  /* Judul di Footer menggunakan Bebas Neue & ukuran disesuaikan */
-  .footer .fw-semibold.mb-3,
+  .footer .fw-semibold.mb-3, /* Judul di Footer */
   .footer h5.fw-bold {
     font-size: 1.3rem;
   }
-  /* Link Kategori di Footer menggunakan Bebas Neue & ukuran disesuaikan */
   .listfoot a {
+    /* Link Kategori di Footer */
     font-size: 1rem;
   }
-  /* Tombol Load More KEMBALI menggunakan Inter & ukuran disesuaikan */
   #loadMoreButton {
+    /* Tombol Load More */
     font-family: "Inter", sans-serif;
-    font-size: 1rem; /* Ukuran font Inter */
+    font-size: 1rem;
     font-weight: 600;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Contoh penyesuaian untuk elemen berita di layar sangat kecil: */
+  .description-text p {
+    font-size: 0.9rem;
+  }
+  #heroCarousel .card-img-overlay .h5 {
+    /* Judul di Carousel */
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+  .news-title {
+    /* Judul berita di card */
+    font-size: 0.85rem;
+  }
+  #loadMoreButton {
+    font-size: 0.9rem;
+    padding: 8px 20px;
   }
 }

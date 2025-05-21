@@ -6,7 +6,7 @@ body {
   background-color: #080a0f;
   color: #e0e0e0;
   margin: 0;
-  padding-top: 80px; /* Sesuaikan dengan tinggi navbar Anda */
+  padding-top: 80px;
   position: relative;
   overflow-x: hidden;
   display: flex;
@@ -23,7 +23,7 @@ body {
   object-fit: cover;
   object-position: center center;
   z-index: -10;
-  filter: brightness(0.3); /* Kecerahan video untuk halaman detail */
+  filter: brightness(0.3);
 }
 
 /* ================== */
@@ -85,7 +85,7 @@ body {
   position: relative;
   z-index: 1;
   flex-grow: 1;
-  padding-bottom: 3rem; /* Jarak dari footer */
+  padding-bottom: 3rem;
 }
 
 .product-title-main {
@@ -109,7 +109,6 @@ body {
   font-weight: 600;
 }
 
-/* Styling Gambar Produk Utama (Kolom Kiri) */
 .product-image-gallery {
   top: 100px;
   z-index: 2;
@@ -247,32 +246,23 @@ body {
 /* ================================================ */
 
 .product-comments-section {
-  border-top: 1px solid rgba(120, 150, 180, 0.2); /* Garis pemisah dari konten produk */
-  /* class="mt-5 pt-4" sudah ada di HTML untuk margin dan padding atas */
+  border-top: 1px solid rgba(120, 150, 180, 0.2);
 }
 
 .comments-container {
-  max-width: 800px; /* Samakan dengan max-width .product-details-card jika diinginkan */
-  /* mx-auto dari class di HTML akan memusatkannya */
+  max-width: 800px;
 }
 
-/* Judul utama bagian komentar "Discussion & Comments" 
-   dan judul daftar komentar "Comments (n)" */
 .product-comments-section .section-title,
 .comments-list-title {
   font-family: "Bebas Neue", sans-serif;
-  color: #00d1ff; /* Warna aksen untuk judul */
+  color: #00d1ff;
   letter-spacing: 1px;
-  /* .section-title (misalnya untuk "Discussion & Comments") 
-     bisa menggunakan style .section-title dari blok detail produk jika sudah ada, 
-     atau definisikan di sini jika berbeda. Contoh: */
-  /* font-size: 1.8rem; */
 }
 
 .comments-list-title {
-  /* Untuk "Comments (n)" */
-  font-size: 1.6rem; /* Sedikit lebih kecil */
-  text-align: left; /* Ratakan kiri untuk daftar komentar */
+  font-size: 1.6rem;
+  text-align: left;
 }
 
 /* Wrapper untuk form komentar utama yang bisa collapse */
@@ -284,14 +274,12 @@ body {
 }
 
 .comment-form-title {
-  /* Judul "Write Your Comment" di dalam form */
   font-family: "Inter", sans-serif;
   font-weight: 600;
   color: #e0e0e0;
   font-size: 1.3rem;
 }
 
-/* Styling untuk input dan textarea di semua form komentar */
 .form-control-futuristic {
   background-color: rgba(8, 10, 15, 0.7) !important;
   border: 1px solid rgba(120, 150, 180, 0.3) !important;
@@ -299,7 +287,7 @@ body {
   border-radius: 6px !important;
   padding: 0.5rem 0.75rem !important;
   font-size: 0.9rem !important;
-  line-height: 1.5 !important; /* Tambahkan untuk textarea agar konsisten */
+  line-height: 1.5 !important;
 }
 
 .form-control-futuristic::placeholder {
@@ -321,8 +309,6 @@ body {
   margin-bottom: 0.3rem;
 }
 
-/* Tombol di dalam form komentar */
-/* Tombol Primer (Submit) */
 .btn-primary-themed {
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -415,21 +401,20 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.2rem 0.4rem;
-  background-color: transparent; /* Pastikan tidak ada background dari .btn */
-  border: none; /* Pastikan tidak ada border dari .btn */
+  background-color: transparent;
+  border: none;
 }
 .reply-button:hover,
 .reply-button:focus {
   color: #00d1ff;
   text-decoration: none;
   box-shadow: none !important;
-  background-color: transparent; /* Pastikan tidak ada background dari .btn */
+  background-color: transparent;
 }
 .reply-button i {
   font-size: 0.9em;
 }
 
-/* Kontainer Form Balasan (Collapse) */
 .reply-form-container {
   background-color: rgba(25, 33, 50, 0.7);
   padding: 1rem;
@@ -456,7 +441,7 @@ body {
 /* Daftar Balasan (Nested) */
 .comment-replies {
   margin-top: 1rem;
-  padding-left: 1.5rem; /* Indentasi untuk balasan */
+  padding-left: 1.5rem;
   border-left: 2px solid rgba(0, 209, 255, 0.15);
 }
 
@@ -582,7 +567,7 @@ body {
   }
   .product-details-wrapper {
     padding: 1.5rem 2rem;
-    margin-top: 2rem; /* Tetap ada untuk tablet saat kolom stack */
+    margin-top: 2rem;
   }
 }
 
@@ -602,7 +587,7 @@ body {
   }
   .product-details-wrapper {
     padding: 1.5rem;
-    margin-top: 1.5rem; /* Disesuaikan untuk mobile */
+    margin-top: 1.5rem;
   }
   .product-section .section-title {
     font-size: 1.6rem;
@@ -623,10 +608,7 @@ body {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
   }
-  /* Tombol primary di form reply menggunakan .btn-sm, jadi aturan .btn-primary-themed.btn-lg tidak berlaku.
-      Kita bisa tambahkan style spesifik jika .btn-primary-themed.btn-sm perlu dikecilkan lagi,
-      atau biarkan style .btn-primary-themed dasar yang berlaku (jika .btn-sm hanya mengurangi padding bootstrap).
-      Untuk konsistensi dengan .btn-secondary-themed: */
+
   .btn-primary-themed.btn-sm {
     /* DITAMBAHKAN: untuk tombol submit di form reply */
     font-size: 0.8rem;
@@ -669,7 +651,7 @@ body {
     font-size: 0.85rem;
   }
   .comment-replies {
-    padding-left: 1rem; /* Kurangi indentasi di mobile */
+    padding-left: 1rem;
   }
   .comment-replies .comment-item {
     /* Style untuk item balasan di mobile */
@@ -734,9 +716,4 @@ body {
   .comment-replies .comment-item {
     padding: 0.5rem;
   }
-  /* Tombol di dalam .reply-form menggunakan .btn-sm, 
-      .btn-primary-themed.btn-sm dan .btn-secondary-themed (yang juga berlaku untuk .btn-sm)
-      sudah diatur di atas, jadi ukurannya akan mengikuti.
-   */
-  /* === AKHIR PENAMBAHAN === */
 }
