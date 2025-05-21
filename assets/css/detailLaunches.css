@@ -364,7 +364,7 @@ body {
 
 @media (max-width: 768px) {
   html {
-    overflow: hidden;
+    overflow-x: hidden;
   }
   /* Mobile (Bootstrap 'md' breakpoint) */
   body {
