@@ -2,7 +2,7 @@
 
 const BASE_API_URL = "https://techcrunch.com/wp-json/wp/v2/posts";
 const POSTS_PER_PAGE = 11;
-const SEARCH_RESULTS_PER_PAGE = 9;
+const SEARCH_RESULTS_PER_PAGE = 8;
 
 let allFetchedGeneralPosts = [];
 let displayedPostIds = new Set();
@@ -103,23 +103,42 @@ function renderInitialCarousel(posts) {
             </div>
         `;
     carouselItemAnchor.appendChild(carouselItemDiv);
-    carouselItemsContainer.appendChild(carouselItemDiv);
+    carouselItemsContainer.appendChild(carouselItemAnchor);
   });
-  if (heroCarouselWrapper) heroCarouselWrapper.style.display = "block"; // Pastikan wrapper terlihat
-  if (descriptionTextElement) descriptionTextElement.style.display = "block"; // Pastikan deskripsi terlihat
+  if (heroCarouselWrapper) heroCarouselWrapper.style.display = "block";
+  if (descriptionTextElement) descriptionTextElement.style.display = "block";
 }
 
-// --- FUNGSI displayPostsInGrid YANG DIPERBAIKI ---
+function showLoadingIndicator(message) {
+  if (cardGridContainer) {
+    cardGridContainer.className = "row card-grid-loading"; // Terapkan class loading
+    cardGridContainer.innerHTML = `
+      <div class="col-12"> <div class="loading-indicator-content">
+          <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-3 loading-indicator-text">${message}</p>
+        </div>
+      </div>`;
+  }
+  if (noResultsMessage) noResultsMessage.style.display = "none";
+}
+
+function restoreCardGridClass() {
+  if (cardGridContainer) {
+    cardGridContainer.className =
+      "row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4";
+  }
+}
+
 function displayPostsInGrid(posts, append = false) {
   if (!cardGridContainer) return;
 
   if (!append) {
+    restoreCardGridClass();
     cardGridContainer.innerHTML = "";
   }
 
-  // Logika untuk pesan "No results"
-  // Tampilkan "no results" hanya jika ada search term aktif dan hasilnya memang kosong.
-  // Jangan tampilkan "no results" saat load awal jika API gagal tapi search term kosong.
   if (posts.length === 0 && !append && currentSearchTerm) {
     if (noResultsMessage) noResultsMessage.style.display = "block";
   } else {
@@ -129,12 +148,9 @@ function displayPostsInGrid(posts, append = false) {
   posts.forEach((post) => {
     const cardElement = createCardElement(post);
     cardGridContainer.appendChild(cardElement);
-    // displayedPostIds di-update di sini untuk melacak apa yang sudah dirender ke DOM.
-    // Ini penting untuk "Load More" agar tidak menampilkan duplikat jika API mengirim ulang data yang sama.
     displayedPostIds.add(post.id);
   });
 }
-// --- AKHIR PERBAIKAN displayPostsInGrid ---
 
 async function fetchNews(url, isSearch = false) {
   if (loadMoreButton) {
@@ -157,59 +173,68 @@ async function fetchNews(url, isSearch = false) {
       throw new Error(`HTTP error! status: ${response.status} for URL: ${url}`);
     }
     const posts = await response.json();
-    // Filter duplikat berdasarkan displayedPostIds HANYA jika BUKAN search query baru dari awal
-    // atau jika kita secara eksplisit mau menambahkan ke set global.
-    // Untuk fetchNews general, kita pastikan post yang dikembalikan belum pernah ditambahkan ke allFetchedGeneralPosts.
     if (!isSearch) {
       return posts.filter((post) => !displayedPostIds.has(post.id));
     }
-    return posts; // Untuk search, biarkan apa adanya, duplikasi dihandle saat display atau penambahan ke allFetchedGeneralPosts
+    return posts;
   } catch (error) {
     console.error("Error fetching news:", error);
-    if (cardGridContainer && cardGridContainer.innerHTML === "") {
+    if (cardGridContainer) {
+      restoreCardGridClass();
       cardGridContainer.innerHTML = `<p class="text-danger text-center col-12 p-3">Failed to load news. Please try again later.</p>`;
     }
     return [];
   } finally {
     if (loadMoreButton) {
       loadMoreButton.disabled = false;
-      // Teks akan diatur oleh logika pemanggil
     }
   }
 }
 
 async function loadInitialView() {
-  currentSearchTerm = ""; // Pastikan search term kosong
-  if (searchInput) searchInput.value = ""; // Kosongkan input field juga
+  currentSearchTerm = "";
+  if (searchInput) searchInput.value = "";
   currentPage = 1;
   displayedPostIds.clear();
   allFetchedGeneralPosts = [];
 
+  showLoadingIndicator("Loading initial news...");
+
+  if (heroCarouselWrapper) heroCarouselWrapper.style.display = "block";
+  if (descriptionTextElement) descriptionTextElement.style.display = "block";
+  if (carouselItemsContainer) carouselItemsContainer.innerHTML = "";
+
   const initialPosts = await fetchNews(
     `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=1&_embed`
   );
-  if (initialPosts.length > 0) {
-    // `displayedPostIds` akan diisi oleh `displayPostsInGrid` dan `renderInitialCarousel` (jika ada logika add di sana)
-    // Untuk carousel, kita tidak perlu `displayedPostIds` karena ia selalu menampilkan 3 pertama dari set yang diberikan.
-    // `allFetchedGeneralPosts` adalah sumber utama untuk berita umum.
-    initialPosts.forEach((post) => displayedPostIds.add(post.id)); // Tandai semua yang diambil dari API awal
-    allFetchedGeneralPosts = initialPosts;
 
-    renderInitialCarousel(allFetchedGeneralPosts); // Menggunakan allFetchedGeneralPosts (slice 0-3 internal)
-    displayPostsInGrid(allFetchedGeneralPosts.slice(3)); // Tampilkan sisa post (setelah 3 untuk carousel)
+  if (initialPosts.length > 0) {
+    initialPosts.forEach((post) => {
+      if (!displayedPostIds.has(post.id)) {
+        // Hanya tambahkan ke allFetched jika benar-benar baru
+        allFetchedGeneralPosts.push(post);
+        displayedPostIds.add(post.id);
+      }
+    });
+    // displayedPostIds sekarang berisi ID dari initialPosts unik
+
+    renderInitialCarousel(allFetchedGeneralPosts);
+    displayPostsInGrid(allFetchedGeneralPosts.slice(3));
 
     if (loadMoreButton) {
       loadMoreButton.textContent = "Load More";
       loadMoreButton.style.display =
-        initialPosts.length < POSTS_PER_PAGE ? "none" : "block";
+        allFetchedGeneralPosts.length < POSTS_PER_PAGE ? "none" : "block";
     }
   } else {
+    restoreCardGridClass();
     if (heroCarouselWrapper && carouselItemsContainer)
       carouselItemsContainer.innerHTML =
         "<p class='text-danger text-center p-3'>No news found for carousel.</p>";
-    if (cardGridContainer)
+    if (cardGridContainer && !cardGridContainer.querySelector(".text-danger")) {
       cardGridContainer.innerHTML =
-        "<p class='text-danger text-center p-3 col-12'>No news available at the moment.</p>";
+        "<p class='text-center p-3 col-12'>No news available at the moment.</p>";
+    }
     if (loadMoreButton) loadMoreButton.style.display = "none";
   }
 }
@@ -226,16 +251,15 @@ async function performSearchQuery(term) {
     return;
   }
 
-  // Untuk search, kita kosongkan grid dan displayedPostIds agar hasil benar-benar baru
-  if (cardGridContainer) cardGridContainer.innerHTML = "";
-  displayedPostIds.clear(); // Reset ID yang ditampilkan untuk konteks pencarian baru
+  showLoadingIndicator("Searching for articles...");
+  displayedPostIds.clear(); // Reset ID untuk konteks pencarian baru agar semua hasil search bisa ditampilkan
 
   const searchUrl = `${BASE_API_URL}?search=${encodeURIComponent(
     currentSearchTerm
   )}&per_page=${SEARCH_RESULTS_PER_PAGE}&page=${currentSearchPage}&_embed`;
-  const searchResults = await fetchNews(searchUrl, true); // isSearch = true
+  const searchResults = await fetchNews(searchUrl, true);
 
-  displayPostsInGrid(searchResults); // Tampilkan hasil pencarian
+  displayPostsInGrid(searchResults); // displayedPostIds akan di-update di sini
 
   if (loadMoreButton) {
     loadMoreButton.textContent = "Load More Results";
@@ -257,10 +281,10 @@ if (searchInput) {
   let searchDebounceTimer;
   searchInput.addEventListener("input", function (event) {
     clearTimeout(searchDebounceTimer);
-    const searchTerm = event.target.value.trim();
-    if (searchTerm === "" && currentSearchTerm !== "") {
+    const searchTermValue = event.target.value.trim();
+    if (searchTermValue === "" && currentSearchTerm !== "") {
       searchDebounceTimer = setTimeout(() => {
-        performSearchQuery(""); // Panggil dengan term kosong untuk reset ke initial view
+        performSearchQuery("");
       }, 500);
     }
   });
@@ -274,25 +298,21 @@ if (loadMoreButton) {
       const searchUrl = `${BASE_API_URL}?search=${encodeURIComponent(
         currentSearchTerm
       )}&per_page=${SEARCH_RESULTS_PER_PAGE}&page=${currentSearchPage}&_embed`;
-      newPosts = await fetchNews(searchUrl, true); // isSearch = true
+      newPosts = await fetchNews(searchUrl, true);
     } else {
       currentPage++;
       const generalUrl = `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=${currentPage}&_embed`;
-      newPosts = await fetchNews(generalUrl); // isSearch = false (default)
-      // Filter lagi untuk memastikan tidak ada duplikasi dengan allFetchedGeneralPosts
-      const uniqueNewPosts = newPosts.filter(
-        (post) => !allFetchedGeneralPosts.find((p) => p.id === post.id)
-      );
-      allFetchedGeneralPosts = allFetchedGeneralPosts.concat(uniqueNewPosts);
-      newPosts = uniqueNewPosts; // Hanya append yang benar-benar baru ke DOM
+      newPosts = await fetchNews(generalUrl);
+      // newPosts sudah difilter dari displayedPostIds global di dalam fetchNews (jika !isSearch)
+      allFetchedGeneralPosts = allFetchedGeneralPosts.concat(newPosts);
     }
 
     if (newPosts.length > 0) {
-      displayPostsInGrid(newPosts, true); // Append hasil
+      restoreCardGridClass();
+      displayPostsInGrid(newPosts, true);
       loadMoreButton.textContent = currentSearchTerm
         ? "Load More Results"
         : "Load More";
-      // Sembunyikan tombol jika jumlah post yang baru < dari yang diminta per halaman
       const limit = currentSearchTerm
         ? SEARCH_RESULTS_PER_PAGE
         : POSTS_PER_PAGE;
@@ -301,6 +321,8 @@ if (loadMoreButton) {
         loadMoreButton.textContent = currentSearchTerm
           ? "No More Results"
           : "No More News";
+      } else {
+        loadMoreButton.style.display = "block";
       }
     } else {
       loadMoreButton.textContent = currentSearchTerm
