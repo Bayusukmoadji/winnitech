@@ -85,12 +85,20 @@
 
     <div class="container my-5 launch-page-content">
       <h1 class="mb-4 text-center page-title">Technology Launch Schedule</h1>
+
+      <p
+        id="noResultsMessageLaunches"
+        class="text-center no-results-message-launches"
+        style="display: none"
+      >
+        No launch products found matching your search.
+      </p>
       <div class="row gy-4" id="launchCards">
         <div class="col-md-6 col-lg-4">
           <div class="card launch-card h-100">
             <div class="launch-card-img-container">
               <img
-                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFjYm9va3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=313&q=80"
                 class="card-img-top launch-card-image"
                 alt="MacBook Pro M4 Launch"
               />
@@ -107,7 +115,7 @@
             </div>
             <div class="card-footer launch-card-footer">
               <a
-                href="detailLaunches.html"
+                href="detailLaunches.html?product=macbook-pro-m4"
                 class="btn btn-sm btn-secondary-themed w-100"
                 >Read More <i class="bi bi-arrow-right-short"></i
               ></a>
@@ -119,7 +127,7 @@
           <div class="card launch-card h-100">
             <div class="launch-card-img-container">
               <img
-                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=313&q=80"
                 class="card-img-top launch-card-image"
                 alt="Samsung Galaxy S26 Ultra"
               />
@@ -135,7 +143,7 @@
             </div>
             <div class="card-footer launch-card-footer">
               <a
-                href="detailLaunches.html"
+                href="detailLaunches.html?product=galaxy-s26-ultra"
                 class="btn btn-sm btn-secondary-themed w-100"
                 >Read More <i class="bi bi-arrow-right-short"></i
               ></a>
@@ -147,63 +155,7 @@
           <div class="card launch-card h-100">
             <div class="launch-card-img-container">
               <img
-                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                class="card-img-top launch-card-image"
-                alt="Samsung Galaxy S26 Ultra"
-              />
-              <div class="launch-date-badge">Jan 20, 2026</div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title launch-title">Galaxy S26 Ultra</h5>
-              <p class="card-text launch-company">Samsung Electronics</p>
-              <p class="card-text launch-description">
-                Samsung's latest flagship with significant camera upgrades,
-                Snapdragon Gen 5 performance, and advanced AI integration.
-              </p>
-            </div>
-            <div class="card-footer launch-card-footer">
-              <a
-                href="detailLaunches.html"
-                class="btn btn-sm btn-secondary-themed w-100"
-                >Read More <i class="bi bi-arrow-right-short"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card launch-card h-100">
-            <div class="launch-card-img-container">
-              <img
-                src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2Ftc3VuZyUyMGdhbGF4eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                class="card-img-top launch-card-image"
-                alt="Samsung Galaxy S26 Ultra"
-              />
-              <div class="launch-date-badge">Jan 20, 2026</div>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title launch-title">Galaxy S26 Ultra</h5>
-              <p class="card-text launch-company">Samsung Electronics</p>
-              <p class="card-text launch-description">
-                Samsung's latest flagship with significant camera upgrades,
-                Snapdragon Gen 5 performance, and advanced AI integration.
-              </p>
-            </div>
-            <div class="card-footer launch-card-footer">
-              <a
-                href="detailLaunches.html"
-                class="btn btn-sm btn-secondary-themed w-100"
-                >Read More <i class="bi bi-arrow-right-short"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card launch-card h-100">
-            <div class="launch-card-img-container">
-              <img
-                src="../assets/img/ipon.png"
+                src="https://images.pexels.com/photos/4581613/pexels-photo-4581613.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 class="card-img-top launch-card-image"
                 alt="NVIDIA RTX 6090"
               />
@@ -213,14 +165,13 @@
               <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
               <p class="card-text launch-company">NVIDIA Corporation</p>
               <p class="card-text launch-description">
-                The most powerful consumer graphics card with the latest
-                "Helios" architecture, promising unparalleled gaming and AI
-                performance.
+                The most powerful consumer graphics card with the "Helios"
+                architecture, promising unparalleled gaming and AI performance.
               </p>
             </div>
             <div class="card-footer launch-card-footer">
               <a
-                href="detailLaunches.html"
+                href="detailLaunches.html?product=rtx-6090"
                 class="btn btn-sm btn-secondary-themed w-100"
                 >Read More <i class="bi bi-arrow-right-short"></i
               ></a>
@@ -232,24 +183,24 @@
           <div class="card launch-card h-100">
             <div class="launch-card-img-container">
               <img
-                src="../assets/img/ipon.png"
+                src="data:image/jpeg;base64,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"
                 class="card-img-top launch-card-image"
-                alt="NVIDIA RTX 6090"
+                alt="Google Pixel Fold 2"
               />
-              <div class="launch-date-badge">Nov 05, 2025</div>
+              <div class="launch-date-badge">Aug 10, 2025</div>
             </div>
             <div class="card-body">
-              <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
-              <p class="card-text launch-company">NVIDIA Corporation</p>
+              <h5 class="card-title launch-title">Google Pixel Fold 2</h5>
+              <p class="card-text launch-company">Google</p>
               <p class="card-text launch-description">
-                The most powerful consumer graphics card with the latest
-                "Helios" architecture, promising unparalleled gaming and AI
-                performance.
+                Google's next-gen foldable phone with a refined hinge, larger
+                cover display, and the powerful Tensor G4 chip for enhanced AI
+                capabilities.
               </p>
             </div>
             <div class="card-footer launch-card-footer">
               <a
-                href="detailLaunches.html"
+                href="detailLaunches.html?product=pixel-fold-2"
                 class="btn btn-sm btn-secondary-themed w-100"
                 >Read More <i class="bi bi-arrow-right-short"></i
               ></a>
@@ -261,24 +212,142 @@
           <div class="card launch-card h-100">
             <div class="launch-card-img-container">
               <img
-                src="../assets/img/ipon.png"
+                src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=313&q=80"
                 class="card-img-top launch-card-image"
-                alt="NVIDIA RTX 6090"
+                alt="Sony PlayStation 6"
               />
-              <div class="launch-date-badge">Nov 05, 2025</div>
+              <div class="launch-date-badge">Nov 18, 2027</div>
             </div>
             <div class="card-body">
-              <h5 class="card-title launch-title">NVIDIA RTX 6090</h5>
-              <p class="card-text launch-company">NVIDIA Corporation</p>
+              <h5 class="card-title launch-title">Sony PlayStation 6</h5>
+              <p class="card-text launch-company">
+                Sony Interactive Entertainment
+              </p>
               <p class="card-text launch-description">
-                The most powerful consumer graphics card with the latest
-                "Helios" architecture, promising unparalleled gaming and AI
-                performance.
+                The next era of console gaming, focusing on immersive
+                experiences, true 8K capabilities, and revolutionary haptic
+                controller feedback.
               </p>
             </div>
             <div class="card-footer launch-card-footer">
               <a
-                href="detailLaunches.html"
+                href="detailLaunches.html?product=playstation-6"
+                class="btn btn-sm btn-secondary-themed w-100"
+                >Read More <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=313&q=80"
+                class="card-img-top launch-card-image"
+                alt="Meta Quest 4"
+              />
+              <div class="launch-date-badge">Sep 25, 2025</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Meta Quest 4</h5>
+              <p class="card-text launch-company">Meta Platforms</p>
+              <p class="card-text launch-description">
+                Advanced standalone VR headset featuring higher resolution
+                displays, a wider field of view, and vastly improved mixed
+                reality features.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a
+                href="detailLaunches.html?product=meta-quest-4"
+                class="btn btn-sm btn-secondary-themed w-100"
+                >Read More <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.pexels.com/photos/1809576/pexels-photo-1809576.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                class="card-img-top launch-card-image"
+                alt="DJI Mavic 4 Pro"
+              />
+              <div class="launch-date-badge">Apr 12, 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">DJI Mavic 4 Pro</h5>
+              <p class="card-text launch-company">DJI</p>
+              <p class="card-text launch-description">
+                Next-gen professional drone with enhanced 1-inch CMOS camera
+                sensors, extended flight time, and omnidirectional obstacle
+                avoidance.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a
+                href="detailLaunches.html?product=dji-mavic-4"
+                class="btn btn-sm btn-secondary-themed w-100"
+                >Read More <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.pexels.com/photos/14674139/pexels-photo-14674139.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                class="card-img-top launch-card-image"
+                alt="Tesla Model C"
+              />
+              <div class="launch-date-badge">Mar 01, 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Tesla Model C</h5>
+              <p class="card-text launch-company">Tesla, Inc.</p>
+              <p class="card-text launch-description">
+                Tesla's affordable compact electric vehicle aimed at mass-market
+                adoption, featuring new LFP battery technology and structural
+                pack design.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a
+                href="detailLaunches.html?product=tesla-model-c"
+                class="btn btn-sm btn-secondary-themed w-100"
+                >Read More <i class="bi bi-arrow-right-short"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card launch-card h-100">
+            <div class="launch-card-img-container">
+              <img
+                src="https://images.pexels.com/photos/7089011/pexels-photo-7089011.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                class="card-img-top launch-card-image"
+                alt="Cerebrum OS"
+              />
+              <div class="launch-date-badge">Dec 01, 2026</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title launch-title">Cerebrum OS</h5>
+              <p class="card-text launch-company">Neuralink</p>
+              <p class="card-text launch-description">
+                An advanced operating system for brain-computer interfaces,
+                enabling enhanced cognitive functions and new therapeutic
+                applications.
+              </p>
+            </div>
+            <div class="card-footer launch-card-footer">
+              <a
+                href="detailLaunches.html?product=cerebrum-os"
                 class="btn btn-sm btn-secondary-themed w-100"
                 >Read More <i class="bi bi-arrow-right-short"></i
               ></a>
@@ -361,5 +430,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/launches.js"></script>
   </body>
 </html>

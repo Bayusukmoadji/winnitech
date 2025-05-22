@@ -1,7 +1,5 @@
-/* assets/css/style.css */
-
 /* ================== */
-/* Basic Setup & Video Background */
+/* Basic Setup  */
 /* ================== */
 body,
 html {
@@ -46,7 +44,7 @@ html {
 }
 
 /* ================== */
-/* "ENTER SITE" Link Styling & Animation - DIMODIFIKASI */
+/* "ENTER SITE" */
 /* ================== */
 
 .enter-site-link {
@@ -73,7 +71,6 @@ html {
   transform: scale(1.05);
 }
 
-/* Keyframes BARU untuk animasi klik pada teks */
 @keyframes textEnterSiteClick {
   0% {
     transform: scale(1.05);
@@ -93,7 +90,6 @@ html {
   }
 }
 
-/* Kelas yang ditambahkan oleh JavaScript untuk memicu animasi simpel */
 .enter-site-link.clicked-effect {
   animation-name: textEnterSiteClick;
   animation-duration: 0.5s;

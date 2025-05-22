@@ -1,5 +1,3 @@
-// File: ../assets/js/news.js
-
 const BASE_API_URL = "https://techcrunch.com/wp-json/wp/v2/posts";
 const POSTS_PER_PAGE = 11;
 const SEARCH_RESULTS_PER_PAGE = 8;
@@ -111,7 +109,7 @@ function renderInitialCarousel(posts) {
 
 function showLoadingIndicator(message) {
   if (cardGridContainer) {
-    cardGridContainer.className = "row card-grid-loading"; // Terapkan class loading
+    cardGridContainer.className = "row card-grid-loading";
     cardGridContainer.innerHTML = `
       <div class="col-12"> <div class="loading-indicator-content">
           <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -211,12 +209,10 @@ async function loadInitialView() {
   if (initialPosts.length > 0) {
     initialPosts.forEach((post) => {
       if (!displayedPostIds.has(post.id)) {
-        // Hanya tambahkan ke allFetched jika benar-benar baru
         allFetchedGeneralPosts.push(post);
         displayedPostIds.add(post.id);
       }
     });
-    // displayedPostIds sekarang berisi ID dari initialPosts unik
 
     renderInitialCarousel(allFetchedGeneralPosts);
     displayPostsInGrid(allFetchedGeneralPosts.slice(3));
@@ -252,14 +248,14 @@ async function performSearchQuery(term) {
   }
 
   showLoadingIndicator("Searching for articles...");
-  displayedPostIds.clear(); // Reset ID untuk konteks pencarian baru agar semua hasil search bisa ditampilkan
+  displayedPostIds.clear();
 
   const searchUrl = `${BASE_API_URL}?search=${encodeURIComponent(
     currentSearchTerm
   )}&per_page=${SEARCH_RESULTS_PER_PAGE}&page=${currentSearchPage}&_embed`;
   const searchResults = await fetchNews(searchUrl, true);
 
-  displayPostsInGrid(searchResults); // displayedPostIds akan di-update di sini
+  displayPostsInGrid(searchResults);
 
   if (loadMoreButton) {
     loadMoreButton.textContent = "Load More Results";
@@ -303,7 +299,6 @@ if (loadMoreButton) {
       currentPage++;
       const generalUrl = `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=${currentPage}&_embed`;
       newPosts = await fetchNews(generalUrl);
-      // newPosts sudah difilter dari displayedPostIds global di dalam fetchNews (jika !isSearch)
       allFetchedGeneralPosts = allFetchedGeneralPosts.concat(newPosts);
     }
 

@@ -1,7 +1,5 @@
-/* assets/css/news.css */
-
 /* ================== */
-/* Basic Setup & Video Background */
+/* Basic Setup  */
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
@@ -32,7 +30,7 @@ body {
   position: relative;
   z-index: 1;
   flex-grow: 1;
-  padding-bottom: 3rem; /* Jarak aman dari footer */
+  padding-bottom: 3rem;
 }
 
 /* ================== */
@@ -89,7 +87,7 @@ body {
 }
 
 /* ================== */
-/* Styling Konten Utama (Carousel, Cards, dll.) */
+/* Styling Konten Utama */
 /* ================== */
 .description-text p {
   font-family: "Inter", sans-serif;
@@ -243,7 +241,6 @@ body {
   opacity: 0.6;
 }
 
-/* BARU: Container untuk Tombol Load More agar bisa di-center */
 .load-more-container {
   display: flex;
   justify-content: center;
@@ -262,7 +259,6 @@ body {
   color: #808a96;
 }
 
-/* BARU: Styling untuk #cardGrid saat loading */
 #cardGrid.card-grid-loading {
   display: flex;
   align-items: center;
@@ -272,12 +268,10 @@ body {
   margin-left: 0;
   margin-right: 0;
 }
-/* BARU: Styling untuk konten di dalam indikator loading */
 .loading-indicator-content {
   text-align: center;
   padding: 2rem 0;
 }
-/* BARU: Teks Loading Indicator */
 .loading-indicator-text {
   color: #00d1ff;
   font-family: "Bebas Neue", sans-serif;
@@ -332,7 +326,7 @@ body {
 .footer .list-unstyled a {
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
-} /* Pastikan link biasa di footer menggunakan Inter */
+}
 .social-icons-group {
   display: flex;
   flex-direction: column;

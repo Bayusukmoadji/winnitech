@@ -1,5 +1,5 @@
 /* ================== */
-/* Basic Setup & Video Background */
+/* Basic Setup */
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
@@ -13,7 +13,6 @@ body {
 }
 
 #background-video-techstock {
-  /* ID BARU UNTUK VIDEO DI HALAMAN INI */
   position: fixed;
   top: 0;
   left: 0;
@@ -94,7 +93,7 @@ body {
 }
 
 /* ================== */
-/* TechStock Page Specific Content Styling */
+/* TechStock content*/
 /* ================== */
 .techstock-page-content {
   position: relative;
@@ -388,12 +387,10 @@ body {
 }
 
 /* ================== */
-/* Responsive Adjustments UNTUK TECHSTOCKS.CSS */
+/* Responsive */
 /* ================== */
 @media (max-width: 991.98px) {
-  /* Tablet dan di bawahnya */
   .navbar #navSearchFormGlobal {
-    /* === DIUBAH: Samakan dengan launches.css untuk search bar terpusat === */
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     max-width: 300px;
@@ -417,7 +414,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Mobile */
   html {
     overflow-x: hidden;
   }
@@ -425,13 +421,11 @@ body {
     padding-top: 60px;
   }
 
-  /* Style untuk .page-title di techstocks.css Anda sudah baik */
   .techstock-page-content .page-title {
     font-size: 2.2rem;
     margin-bottom: 2rem !important;
   }
 
-  /* Style spesifik untuk stock card Anda di sini tetap dipertahankan */
   .stock-card-item .stock-company-name {
     font-size: 1.3rem;
     line-height: 1.1;
@@ -453,15 +447,12 @@ body {
   }
 }
 
-/* === DITAMBAHKAN: Breakpoint untuk layar sangat kecil, samakan dengan launches.css === */
 @media (max-width: 576px) {
-  /* Small Mobile */
   .techstock-page-content .page-title {
     font-size: 1.8rem;
     margin-bottom: 1.5rem !important;
   }
 
-  /* Anda bisa menambahkan penyesuaian lebih lanjut untuk stock card di sini jika diperlukan, contoh: */
   .stock-card-item .stock-company-name {
     font-size: 1.15rem;
   }

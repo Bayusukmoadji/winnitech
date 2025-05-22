@@ -1,5 +1,5 @@
 /* ================== */
-/* Basic Setup & Video Background (Mirip TechStocks) */
+/* Basic Setup  */
 /* ================== */
 body {
   font-family: "Inter", sans-serif;
@@ -27,8 +27,7 @@ body {
 }
 
 /* ================== */
-/* Navbar Styling (Ambil dari CSS TechStocks atau CSS Umum Anda) */
-/* Pastikan ini konsisten jika Anda punya file CSS umum */
+/* Navbar Styling 
 /* ================== */
 .navbar {
   background-color: rgba(15, 20, 30, 0.75) !important;
@@ -230,8 +229,19 @@ body {
   padding: 0.75rem 1.25rem;
 }
 
+.no-results-message-launches {
+  color: #808a96;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  border: 1px dashed rgba(120, 150, 180, 0.3);
+  border-radius: 0.5rem;
+  background-color: rgba(20, 25, 40, 0.5);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 /* ================== */
-/* Footer Styling (Ambil dari CSS TechStocks atau CSS Umum Anda) */
+/* Footer Styling */
 /* ================== */
 .footer {
   background-color: rgba(10, 10, 15, 0.75);
@@ -326,7 +336,7 @@ body {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     width: 100%;
-    max-width: 300px; /* Disesuaikan dari jawaban sebelumnya */
+    max-width: 300px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
