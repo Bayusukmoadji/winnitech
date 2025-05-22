@@ -1,3 +1,5 @@
+/* assets/css/style.css */
+
 /* ================== */
 /* Basic Setup & Video Background */
 /* ================== */
@@ -37,10 +39,6 @@ html {
   box-sizing: border-box;
 }
 
-.logo-container {
-  margin-bottom: 30px;
-}
-
 .logo-container img {
   max-width: 1000px;
   height: auto;
@@ -48,64 +46,56 @@ html {
 }
 
 /* ================== */
-/* "ENTER SITE" Link Styling & Animation */
+/* "ENTER SITE" Link Styling & Animation - DIMODIFIKASI */
 /* ================== */
-.enter-site-wrapper {
-  margin-top: 15px;
-}
 
 .enter-site-link {
   display: inline-block;
   font-family: "Bebas Neue", sans-serif;
-  color: #e0e0e0;
-  font-size: 2em;
-  letter-spacing: 2.5px;
+  color: rgba(224, 224, 224, 0.8);
+  font-size: 2.2em;
+  letter-spacing: 3px;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 12px 35px;
-  border: 1px solid rgba(224, 224, 224, 0.4);
+  padding: 10px 15px;
   border-radius: 4px;
-  background-color: transparent;
-  transition: all 0.3s ease-out;
+
+  transition: color 0.3s ease-out, transform 0.3s ease-out,
+    text-shadow 0.3s ease-out;
   transform-origin: center center;
   cursor: pointer;
 }
 
 .enter-site-link:hover {
   color: #ffffff;
-  background-color: rgba(0, 209, 255, 0.15);
-  border-color: rgba(0, 209, 255, 0.8);
-  box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
-  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(0, 209, 255, 0.7), 0 0 15px rgba(0, 209, 255, 0.5),
+    0 0 25px rgba(0, 209, 255, 0.3);
+  transform: scale(1.05);
 }
 
-/* Keyframes BARU untuk animasi klik yang simpel & futuristik */
-@keyframes simpleFuturisticClick {
+/* Keyframes BARU untuk animasi klik pada teks */
+@keyframes textEnterSiteClick {
   0% {
-    /* Mulai dari state hover atau sedikit lebih ditekan */
-    transform: translateY(-2px) scale(1.03);
+    transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.5);
-    background-color: rgba(0, 209, 255, 0.2);
-    border-color: #00d1ff;
+    text-shadow: 0 0 8px rgba(0, 209, 255, 0.7), 0 0 15px rgba(0, 209, 255, 0.5),
+      0 0 25px rgba(0, 209, 255, 0.3);
   }
   50% {
-    /* Mulai mengecil dan memudar */
-    transform: translateY(-2px) scale(0.9);
-    opacity: 0.6;
-    box-shadow: 0 0 10px rgba(0, 209, 255, 0.2);
+    transform: scale(0.9);
+    opacity: 0.5;
+    text-shadow: 0 0 5px rgba(0, 209, 255, 0.2);
   }
   100% {
-    /* Hilang sepenuhnya */
-    transform: translateY(-2px) scale(0.7);
+    transform: scale(0.7);
     opacity: 0;
-    box-shadow: 0 0 0 rgba(0, 209, 255, 0);
+    text-shadow: none;
   }
 }
 
-/* Kelas BARU yang ditambahkan oleh JavaScript untuk memicu animasi simpel */
+/* Kelas yang ditambahkan oleh JavaScript untuk memicu animasi simpel */
 .enter-site-link.clicked-effect {
-  animation-name: simpleFuturisticClick;
+  animation-name: textEnterSiteClick;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
@@ -120,38 +110,31 @@ html {
     overflow-x: hidden;
   }
   .logo-container img {
-    max-width: 80%;
-    max-height: 200px;
-  }
-  .logo-container {
-    margin-bottom: 35px;
+    max-width: 450px;
   }
   .enter-site-wrapper {
-    margin-top: 15px;
+    margin-top: 20px;
   }
   .enter-site-link {
-    font-size: 1.7em;
-    padding: 10px 30px;
-    letter-spacing: 2px;
-    max-width: 280px;
+    font-size: 2em;
+    letter-spacing: 2.5px;
+    padding: 10px 10px;
   }
 }
 
 @media (max-width: 480px) {
   .logo-container img {
-    max-height: 150px;
+    max-height: 200px;
   }
   .logo-container {
     margin-bottom: 30px;
   }
   .enter-site-wrapper {
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .enter-site-link {
-    font-size: 1.4em;
-    padding: 9px 25px;
-    letter-spacing: 1.5px;
-    min-width: 180px;
-    max-width: 250px;
+    font-size: 1.6em;
+    letter-spacing: 2px;
+    padding: 8px 5px;
   }
 }
