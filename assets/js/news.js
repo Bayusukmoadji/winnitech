@@ -1,9 +1,12 @@
 const BASE_API_URL = "https://techcrunch.com/wp-json/wp/v2/posts";
 const POSTS_PER_PAGE = 11;
-const SEARCH_RESULTS_PER_PAGE = 8;
+const API_ITEMS_PER_SEARCH_PAGE = 30;
+const API_FIELDS_PARAM = "_fields=id,date,link,title,excerpt,_links";
+const API_EMBED_PARAM = "_embed=wp:featuredmedia";
 
 let allFetchedGeneralPosts = [];
 let displayedPostIds = new Set();
+let displayedImageUrls = new Set();
 let currentPage = 1;
 let currentSearchPage = 1;
 let currentSearchTerm = "";
@@ -21,7 +24,6 @@ function formatTimeAgo(dateString) {
   const now = new Date();
   const past = new Date(dateString);
   const secondsPast = Math.floor((now.getTime() - past.getTime()) / 1000);
-
   if (secondsPast < 60) return "Just now";
   const minutesPast = Math.floor(secondsPast / 60);
   if (minutesPast < 60)
@@ -52,7 +54,6 @@ function createCardElement(post) {
     textExcerpt.substring(0, 100) + (textExcerpt.length > 100 ? "..." : "");
   const link = post.link;
   const timeAgo = formatTimeAgo(post.date);
-
   const cardColumn = document.createElement("div");
   cardColumn.className = "col";
   const cardAnchor = document.createElement("a");
@@ -84,7 +85,6 @@ function renderInitialCarousel(posts) {
     const title = post.title.rendered;
     const link = post.link;
     const timeAgo = formatTimeAgo(post.date);
-
     const carouselItemAnchor = document.createElement("a");
     carouselItemAnchor.href = link;
     carouselItemAnchor.target = "_blank";
@@ -111,7 +111,8 @@ function showLoadingIndicator(message) {
   if (cardGridContainer) {
     cardGridContainer.className = "row card-grid-loading";
     cardGridContainer.innerHTML = `
-      <div class="col-12"> <div class="loading-indicator-content">
+      <div class="col-12">
+        <div class="loading-indicator-content">
           <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -144,46 +145,52 @@ function displayPostsInGrid(posts, append = false) {
   }
 
   posts.forEach((post) => {
+    const originalImageUrl =
+      post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+
+    if (currentSearchTerm && originalImageUrl) {
+      if (displayedImageUrls.has(originalImageUrl)) {
+        console.log(
+          `Skipping article "${post.title.rendered}" due to duplicate image in search: ${originalImageUrl}`
+        );
+        return;
+      }
+      displayedImageUrls.add(originalImageUrl);
+    }
+
     const cardElement = createCardElement(post);
     cardGridContainer.appendChild(cardElement);
-    displayedPostIds.add(post.id);
   });
 }
 
-async function fetchNews(url, isSearch = false) {
-  if (loadMoreButton) {
+async function fetchNews(url, isSearchOperation = false, forLoadMore = false) {
+  if (loadMoreButton && forLoadMore) {
     loadMoreButton.disabled = true;
     loadMoreButton.textContent = "Loading...";
   }
-
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      if (
-        response.status === 400 &&
-        (isSearch || currentPage > 1 || currentSearchPage > 1)
-      ) {
-        console.warn(
-          `No more posts or invalid page (status 400) for URL: ${url}`
-        );
+      if (response.status === 400) {
+        console.warn(`API request to ${url} returned status 400.`);
         return [];
       }
       throw new Error(`HTTP error! status: ${response.status} for URL: ${url}`);
     }
-    const posts = await response.json();
-    if (!isSearch) {
-      return posts.filter((post) => !displayedPostIds.has(post.id));
-    }
-    return posts;
+    return await response.json();
   } catch (error) {
     console.error("Error fetching news:", error);
-    if (cardGridContainer) {
+    if (
+      cardGridContainer &&
+      (cardGridContainer.innerHTML.includes("spinner-border") ||
+        cardGridContainer.innerHTML === "")
+    ) {
       restoreCardGridClass();
       cardGridContainer.innerHTML = `<p class="text-danger text-center col-12 p-3">Failed to load news. Please try again later.</p>`;
     }
     return [];
   } finally {
-    if (loadMoreButton) {
+    if (loadMoreButton && forLoadMore) {
       loadMoreButton.disabled = false;
     }
   }
@@ -202,12 +209,11 @@ async function loadInitialView() {
   if (descriptionTextElement) descriptionTextElement.style.display = "block";
   if (carouselItemsContainer) carouselItemsContainer.innerHTML = "";
 
-  const initialPosts = await fetchNews(
-    `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=1&_embed`
-  );
+  const url = `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=1&${API_EMBED_PARAM}&${API_FIELDS_PARAM}`;
+  const fetchedPosts = await fetchNews(url);
 
-  if (initialPosts.length > 0) {
-    initialPosts.forEach((post) => {
+  if (fetchedPosts.length > 0) {
+    fetchedPosts.forEach((post) => {
       if (!displayedPostIds.has(post.id)) {
         allFetchedGeneralPosts.push(post);
         displayedPostIds.add(post.id);
@@ -221,6 +227,7 @@ async function loadInitialView() {
       loadMoreButton.textContent = "Load More";
       loadMoreButton.style.display =
         allFetchedGeneralPosts.length < POSTS_PER_PAGE ? "none" : "block";
+      loadMoreButton.disabled = false;
     }
   } else {
     restoreCardGridClass();
@@ -231,12 +238,16 @@ async function loadInitialView() {
       cardGridContainer.innerHTML =
         "<p class='text-center p-3 col-12'>No news available at the moment.</p>";
     }
-    if (loadMoreButton) loadMoreButton.style.display = "none";
+    if (loadMoreButton) {
+      loadMoreButton.style.display = "none";
+      loadMoreButton.textContent = "No More News";
+    }
   }
 }
 
 async function performSearchQuery(term) {
-  currentSearchTerm = term.toLowerCase().trim();
+  const searchTermForFilter = term.toLowerCase().trim();
+  currentSearchTerm = searchTermForFilter;
   currentSearchPage = 1;
 
   if (heroCarouselWrapper) heroCarouselWrapper.style.display = "none";
@@ -248,19 +259,46 @@ async function performSearchQuery(term) {
   }
 
   showLoadingIndicator("Searching for articles...");
-  displayedPostIds.clear();
+  displayedImageUrls.clear();
 
   const searchUrl = `${BASE_API_URL}?search=${encodeURIComponent(
     currentSearchTerm
-  )}&per_page=${SEARCH_RESULTS_PER_PAGE}&page=${currentSearchPage}&_embed`;
-  const searchResults = await fetchNews(searchUrl, true);
-
-  displayPostsInGrid(searchResults);
+  )}&per_page=${API_ITEMS_PER_SEARCH_PAGE}&page=${currentSearchPage}&${API_EMBED_PARAM}&${API_FIELDS_PARAM}`;
 
   if (loadMoreButton) {
-    loadMoreButton.textContent = "Load More Results";
-    loadMoreButton.style.display =
-      searchResults.length < SEARCH_RESULTS_PER_PAGE ? "none" : "block";
+    loadMoreButton.disabled = true;
+  }
+
+  const apiResults = await fetchNews(searchUrl, true, false);
+
+  let titleFilteredResults = [];
+  if (apiResults && apiResults.length > 0) {
+    titleFilteredResults = apiResults.filter((post) =>
+      post.title.rendered.toLowerCase().includes(searchTermForFilter)
+    );
+  }
+
+  displayPostsInGrid(titleFilteredResults, false);
+
+  if (loadMoreButton) {
+    if (apiResults.length < API_ITEMS_PER_SEARCH_PAGE) {
+      loadMoreButton.style.display = "none";
+      loadMoreButton.textContent = "No More Results";
+    } else {
+      loadMoreButton.style.display = "block";
+      loadMoreButton.textContent = "Load More Results";
+    }
+    loadMoreButton.disabled = loadMoreButton.style.display === "none";
+
+    if (
+      titleFilteredResults.length === 0 &&
+      apiResults.length > 0 &&
+      apiResults.length < API_ITEMS_PER_SEARCH_PAGE
+    ) {
+      loadMoreButton.textContent = "No More Title Matches On This Page";
+    } else if (apiResults.length === 0) {
+      loadMoreButton.style.display = "none";
+    }
   }
 }
 
@@ -288,38 +326,69 @@ if (searchInput) {
 
 if (loadMoreButton) {
   loadMoreButton.addEventListener("click", async function () {
-    let newPosts;
+    let newApiPosts;
+    let newTitleFilteredPosts = [];
+
+    loadMoreButton.disabled = true;
+    loadMoreButton.textContent = "Loading...";
+
     if (currentSearchTerm) {
       currentSearchPage++;
       const searchUrl = `${BASE_API_URL}?search=${encodeURIComponent(
         currentSearchTerm
-      )}&per_page=${SEARCH_RESULTS_PER_PAGE}&page=${currentSearchPage}&_embed`;
-      newPosts = await fetchNews(searchUrl, true);
+      )}&per_page=${API_ITEMS_PER_SEARCH_PAGE}&page=${currentSearchPage}&${API_EMBED_PARAM}&${API_FIELDS_PARAM}`;
+      newApiPosts = await fetchNews(searchUrl, true, true);
+
+      if (newApiPosts && newApiPosts.length > 0) {
+        newTitleFilteredPosts = newApiPosts.filter((post) =>
+          post.title.rendered.toLowerCase().includes(currentSearchTerm)
+        );
+      }
     } else {
       currentPage++;
-      const generalUrl = `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=${currentPage}&_embed`;
-      newPosts = await fetchNews(generalUrl);
-      allFetchedGeneralPosts = allFetchedGeneralPosts.concat(newPosts);
+      const generalUrl = `${BASE_API_URL}?per_page=${POSTS_PER_PAGE}&page=${currentPage}&${API_EMBED_PARAM}&${API_FIELDS_PARAM}`;
+      newApiPosts = await fetchNews(generalUrl, false, true);
+
+      newApiPosts.forEach((post) => {
+        allFetchedGeneralPosts.push(post);
+        displayedPostIds.add(post.id);
+      });
+      newTitleFilteredPosts = newApiPosts;
     }
 
-    if (newPosts.length > 0) {
+    if (newTitleFilteredPosts.length > 0) {
       restoreCardGridClass();
-      displayPostsInGrid(newPosts, true);
+      displayPostsInGrid(newTitleFilteredPosts, true);
+    }
+
+    loadMoreButton.disabled = false;
+    const limit = currentSearchTerm
+      ? API_ITEMS_PER_SEARCH_PAGE
+      : POSTS_PER_PAGE;
+
+    if (newApiPosts.length < limit) {
+      loadMoreButton.style.display = "none";
+      loadMoreButton.textContent = currentSearchTerm
+        ? "No More Results"
+        : "No More News";
+    } else {
+      loadMoreButton.style.display = "block";
       loadMoreButton.textContent = currentSearchTerm
         ? "Load More Results"
         : "Load More";
-      const limit = currentSearchTerm
-        ? SEARCH_RESULTS_PER_PAGE
-        : POSTS_PER_PAGE;
-      if (newPosts.length < limit) {
-        loadMoreButton.style.display = "none";
-        loadMoreButton.textContent = currentSearchTerm
-          ? "No More Results"
-          : "No More News";
-      } else {
-        loadMoreButton.style.display = "block";
+      if (
+        newTitleFilteredPosts.length === 0 &&
+        currentSearchTerm &&
+        newApiPosts.length > 0
+      ) {
+        loadMoreButton.textContent = "Load More Results (checking titles...)";
       }
-    } else {
+    }
+    if (
+      newApiPosts.length === 0 &&
+      newTitleFilteredPosts.length === 0 &&
+      loadMoreButton.style.display !== "none"
+    ) {
       loadMoreButton.textContent = currentSearchTerm
         ? "No More Results"
         : "No More News";
